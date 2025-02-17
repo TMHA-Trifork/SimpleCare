@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleCare.EmergencyWards.A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleCare.EmergencyWards", "SimpleCare.EmergencyWards\SimpleCare.EmergencyWards.csproj", "{67834139-99BE-4360-B2F0-E2E6F5013A24}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleCare.BedWards.Application", "SimpleCare.BedWards.Application\SimpleCare.BedWards.Application.csproj", "{DD4D8ABA-35DC-417C-8F52-28E6028585CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleCare.BedWards", "SimpleCare.BedWards\SimpleCare.BedWards.csproj", "{AFD15FCA-066F-4BB7-95A5-C014DB8BD8FE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{67834139-99BE-4360-B2F0-E2E6F5013A24}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{67834139-99BE-4360-B2F0-E2E6F5013A24}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{67834139-99BE-4360-B2F0-E2E6F5013A24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD4D8ABA-35DC-417C-8F52-28E6028585CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD4D8ABA-35DC-417C-8F52-28E6028585CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD4D8ABA-35DC-417C-8F52-28E6028585CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD4D8ABA-35DC-417C-8F52-28E6028585CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFD15FCA-066F-4BB7-95A5-C014DB8BD8FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFD15FCA-066F-4BB7-95A5-C014DB8BD8FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFD15FCA-066F-4BB7-95A5-C014DB8BD8FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFD15FCA-066F-4BB7-95A5-C014DB8BD8FE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

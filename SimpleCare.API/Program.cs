@@ -1,10 +1,12 @@
+using SimpleCare.BedWards.Application;
 using SimpleCare.EmergencyWards.Application;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddMediatR(cfg =>
-    cfg.RegisterServicesFromAssemblyContaining<EmergencyWard>()
+    cfg.RegisterServicesFromAssemblyContaining<BedWard>()
+    .RegisterServicesFromAssemblyContaining<EmergencyWard>()
 );
 
 builder.Services.AddControllers();

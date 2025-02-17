@@ -11,7 +11,7 @@ namespace SimpleCare.API.Controllers;
 [ApiController]
 public class EmergencyWardController(IMediator mediator, ILogger<EmergencyWardController> logger) : ControllerBase
 {
-    [HttpGet("patients", Name = "GetPatients")]
+    [HttpGet("patients", Name = "GetEmergencyPatients")]
     [Produces(MediaTypeNames.Application.Json)]
     public async Task<ActionResult<EmergencyPatientListItem[]>> GetPatients(CancellationToken cancellationToken)
     {
@@ -21,7 +21,7 @@ public class EmergencyWardController(IMediator mediator, ILogger<EmergencyWardCo
         return Ok(result.ToArray());
     }
 
-    [HttpGet("patients/{patientId}", Name = "GetPatient")]
+    [HttpGet("patients/{patientId}", Name = "GetEmergencyPatient")]
     [Produces(MediaTypeNames.Application.Json)]
     public async Task<ActionResult<EmergencyPatient>> GetPatient(Guid patientId, CancellationToken cancellationToken)
     {
@@ -31,7 +31,7 @@ public class EmergencyWardController(IMediator mediator, ILogger<EmergencyWardCo
         return Ok(result);
     }
 
-    [HttpPost("register", Name = "Register")]
+    [HttpPost("patients/register", Name = "RegisterEmergencyPatient")]
     public async Task<ActionResult> Register(EmergencyRegistration emergencyRegistration, CancellationToken cancellationToken)
     {
         var command = new RegisterPatientCommand(emergencyRegistration);
@@ -40,8 +40,7 @@ public class EmergencyWardController(IMediator mediator, ILogger<EmergencyWardCo
         return Ok();
     }
 
-
-    [HttpPost("transfer", Name = "Transfer")]
+    [HttpPost("patients/transfer", Name = "TransferEmergencyPatient")]
     public async Task<ActionResult> Transfer(TransferRequest transferRequest, CancellationToken cancellationToken)
     {
         var command = new TransferPatientCommand(transferRequest);
