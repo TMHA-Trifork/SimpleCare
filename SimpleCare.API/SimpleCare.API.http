@@ -1,0 +1,6 @@
+@SimpleCare.API_HostAddress = http://localhost:5034
+
+GET {{SimpleCare.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
