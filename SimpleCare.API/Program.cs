@@ -1,13 +1,19 @@
 using SimpleCare.BedWards.Application;
 using SimpleCare.EmergencyWards.Application;
+using SimpleCare.EmergencyWards.Domain;
+using SimpleCare.EmergencyWards.Interfaces;
+using SimpleCare.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddMediatR(cfg =>
-    cfg.RegisterServicesFromAssemblyContaining<BedWard>()
+builder.Services.AddEntityFrameworkInfrastructure();
+
+builder.Services.AddMediatR(cfg => cfg
+    .RegisterServicesFromAssemblyContaining<BedWard>()
     .RegisterServicesFromAssemblyContaining<EmergencyWard>()
 );
+
+builder.Services.AddScoped<IEmergencyWard, EmergencyWardRoot>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

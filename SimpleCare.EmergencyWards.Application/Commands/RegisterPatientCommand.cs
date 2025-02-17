@@ -1,15 +1,29 @@
 ﻿using MediatR;
 using SimpleCare.EmergencyWards.Application.Values;
-using System.Security.Cryptography.X509Certificates;
+using SimpleCare.EmergencyWards.Interfaces;
+using SimpleCare.Infrastructure.Interfaces.UnitOfWork;
 
 namespace SimpleCare.EmergencyWards.Application.Commands;
 
 public record RegisterPatientCommand(EmergencyRegistration EmergencyRegistration) : IRequest;
 
-public class RegisterPatientCommandHandler() : IRequestHandler<RegisterPatientCommand>
+public class RegisterPatientCommandHandler(IUnitOfWork unitOfWork, IEmergencyWard emergencyWardRoot) : IRequestHandler<RegisterPatientCommand>
 {
-    public Task Handle(RegisterPatientCommand request, CancellationToken cancellationToken)
+    public async Task Handle(RegisterPatientCommand request, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        try
+        {
+            await emergencyWardRoot.RegisterPatient(
+                request.EmergencyRegistration.FamilyName,
+                request.EmergencyRegistration.GivenNames,
+                request.EmergencyRegistration.Reason,
+                cancellationToken);
+
+            await unitOfWork.SaveChanges(cancellationToken);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("An error occurred while registering the patient", ex);
+        }
     }
 }

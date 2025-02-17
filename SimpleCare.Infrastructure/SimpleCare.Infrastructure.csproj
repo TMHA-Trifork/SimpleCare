@@ -7,12 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MediatR" Version="12.4.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\SimpleCare.EmergencyWards\SimpleCare.EmergencyWards.csproj" />
     <ProjectReference Include="..\SimpleCare.Infrastructure.Interfaces\SimpleCare.Infrastructure.Interfaces.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="BedWards\" />
   </ItemGroup>
 
 </Project>

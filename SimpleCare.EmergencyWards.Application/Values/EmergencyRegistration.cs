@@ -1,3 +1,3 @@
 ﻿namespace SimpleCare.EmergencyWards.Application.Values;
 
-public record EmergencyRegistration(string familyName, string givenNames, string observation);
+public record EmergencyRegistration(string FamilyName, string GivenNames, string Reason);
