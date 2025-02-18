@@ -1,3 +1,11 @@
-﻿namespace SimpleCare.EmergencyWards.Application.Values;
+﻿using SimpleCare.EmergencyWards.Domain;
 
-public record EmergencyPatient(Guid PatientId, string FamilyName, string GivenNames);
+namespace SimpleCare.EmergencyWards.Application.Values;
+
+public record EmergencyPatient(Guid PatientId, string FamilyName, string GivenNames)
+{
+    internal static EmergencyPatient Map(Patient p)
+    {
+        return new EmergencyPatient(p.Id, p.FamilyName, p.GivenNames);
+    }
+}

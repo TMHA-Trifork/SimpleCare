@@ -1,15 +1,17 @@
 ﻿using MediatR;
 using SimpleCare.EmergencyWards.Application.Values;
+using SimpleCare.EmergencyWards.Interfaces;
 using System.Collections.Immutable;
 
 namespace SimpleCare.EmergencyWards.Application.Queries;
 
 public record GetPatientsQuery : IRequest<ImmutableList<EmergencyPatientListItem>>;
 
-public class GetPatientsQueryHandler : IRequestHandler<GetPatientsQuery, ImmutableList<EmergencyPatientListItem>>
+public class GetPatientsQueryHandler(IEmergencyWard emergencyWardRoot) : IRequestHandler<GetPatientsQuery, ImmutableList<EmergencyPatientListItem>>
 {
-    public Task<ImmutableList<EmergencyPatientListItem>> Handle(GetPatientsQuery request, CancellationToken cancellationToken)
+    public async Task<ImmutableList<EmergencyPatientListItem>> Handle(GetPatientsQuery request, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var patients = await emergencyWardRoot.GetPatients(cancellationToken);
+        return [.. patients.Select(p => EmergencyPatientListItem.Map(p))];
     }
 }

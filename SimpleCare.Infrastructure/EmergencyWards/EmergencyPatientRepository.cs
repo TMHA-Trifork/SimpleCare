@@ -2,6 +2,7 @@
 using SimpleCare.EmergencyWards.Domain;
 using SimpleCare.EmergencyWards.Interfaces;
 using SimpleCare.Infrastructure.UnitOfWork;
+using System.Collections.Immutable;
 
 namespace SimpleCare.Infrastructure.EmergencyWards;
 
@@ -12,6 +13,18 @@ public class EmergencyPatientRepository : IEmergencyPatientRepository
     public EmergencyPatientRepository(SimpleCareDbContext dbContext)
     {
         patients = dbContext.Set<Patient>();
+    }
+
+    public async Task<Patient> Get(Guid patientId, CancellationToken cancellationToken)
+    {
+        var patient = (await patients.FindAsync(patientId, cancellationToken))
+            ?? throw new Exception($"Patient with id={patientId} not found");
+        return patient;
+    }
+
+    public async Task<ImmutableList<Patient>> GetAll(CancellationToken cancellationToken)
+    {
+        return [.. await patients.ToListAsync(cancellationToken)];
     }
 
     public async Task Add(Patient patient, CancellationToken cancellationToken)

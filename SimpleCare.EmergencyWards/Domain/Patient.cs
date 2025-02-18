@@ -1,3 +1,3 @@
 ﻿namespace SimpleCare.EmergencyWards.Domain;
 
-public record Patient(Guid PatientId, string FamilyName, string GivenNames);
+public record Patient(Guid Id, string FamilyName, string GivenNames);
