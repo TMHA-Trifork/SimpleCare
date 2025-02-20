@@ -7,7 +7,7 @@ public enum EmergencyPatientStatus
     Discharged
 }
 
-public record Patient(Guid Id, string FamilyName, string GivenNames, EmergencyPatientStatus Status, string? wardIdentifier = null)
+public record Patient(Guid Id, string PersonalIdentifier, string FamilyName, string GivenNames, EmergencyPatientStatus Status, string? wardIdentifier = null)
 {
     internal Patient Transfer(string wardIdentifier)
     {

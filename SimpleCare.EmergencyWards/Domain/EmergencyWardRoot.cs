@@ -1,4 +1,4 @@
-﻿using SimpleCare.EmergencyWards.Boundary.Events;
+﻿using SimpleCare.EmergencyWards.Domain.Events;
 using SimpleCare.EmergencyWards.Interfaces;
 using System.Collections.Immutable;
 
@@ -16,9 +16,9 @@ public class EmergencyWardRoot(IEmergencyPatientRepository patientRepository, IE
         return patientRepository.GetAll(cancellationToken);
     }
 
-    public async Task<Encounter> RegisterPatient(string familyName, string givenNames, string observation, CancellationToken cancellationToken)
+    public async Task<Encounter> RegisterPatient(string personalIdentifier, string familyName, string givenNames, string observation, CancellationToken cancellationToken)
     {
-        var patient = new Patient(Guid.NewGuid(), familyName, givenNames, EmergencyPatientStatus.Registered);
+        var patient = new Patient(Guid.NewGuid(), personalIdentifier, familyName, givenNames, EmergencyPatientStatus.Registered);
         await patientRepository.Add(patient, cancellationToken);
 
         var encounter = new Encounter(Guid.NewGuid(), patient.Id, observation);
@@ -27,7 +27,7 @@ public class EmergencyWardRoot(IEmergencyPatientRepository patientRepository, IE
         return encounter;
     }
 
-    public async Task<TransferredEvent> TransferPatient(Guid patientId, string familyName, string givenNames, string wardIdentifier, CancellationToken cancellationToken)
+    public async Task<TransferredEvent> TransferPatient(Guid patientId, string wardIdentifier, string reason, CancellationToken cancellationToken)
     {
         var patient = (await patientRepository.Get(patientId, cancellationToken))
             ?? throw new InvalidOperationException($"Patient with ID {patientId} not found.");
@@ -36,6 +36,6 @@ public class EmergencyWardRoot(IEmergencyPatientRepository patientRepository, IE
 
         patientRepository.Update(patient, cancellationToken);
 
-        return new TransferredEvent(patientId, familyName, givenNames, wardIdentifier);
+        return new TransferredEvent(patient.PersonalIdentifier, patient.FamilyName, patient.GivenNames, wardIdentifier, reason);
     }
 }

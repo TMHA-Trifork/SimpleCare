@@ -1,12 +1,18 @@
 ﻿using MediatR;
+using SimpleCare.BedWards.Interfaces;
 using SimpleCare.EmergencyWards.Boundary.Events;
 
 namespace SimpleCare.BedWards.Application.EventHandlers;
 
-public class TransferPatientHandler : INotificationHandler<TransferredEvent>
+public class TransferPatientHandler(IBedWard bedWard) : INotificationHandler<EmergencyPatientTransferredEvent>
 {
-    public Task Handle(TransferredEvent notification, CancellationToken cancellationToken)
+    public async Task Handle(EmergencyPatientTransferredEvent notification, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        await bedWard.RegisterIncomingPatient(notification.PersonalIdentifier,
+            notification.FamilyName,
+            notification.GivenNames,
+            notification.WardIdentifier,
+            notification.Reason,
+            cancellationToken);
     }
 }

@@ -1,5 +1,7 @@
 using SimpleCare.BedWards.Application;
 using SimpleCare.BedWards.Boundary;
+using SimpleCare.BedWards.Domain;
+using SimpleCare.BedWards.Interfaces;
 using SimpleCare.EmergencyWards.Application;
 using SimpleCare.EmergencyWards.Boundary;
 using SimpleCare.EmergencyWards.Domain;
@@ -18,6 +20,7 @@ builder.Services.AddMediatR(cfg => cfg
 );
 
 builder.Services.AddScoped<IEmergencyWard, EmergencyWardRoot>();
+builder.Services.AddScoped<IBedWard, BedWardRoot>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

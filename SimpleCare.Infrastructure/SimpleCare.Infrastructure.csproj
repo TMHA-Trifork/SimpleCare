@@ -15,12 +15,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SimpleCare.BedWards\SimpleCare.BedWards.csproj" />
     <ProjectReference Include="..\SimpleCare.EmergencyWards\SimpleCare.EmergencyWards.csproj" />
     <ProjectReference Include="..\SimpleCare.Infrastructure.Interfaces\SimpleCare.Infrastructure.Interfaces.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="BedWards\" />
   </ItemGroup>
 
 </Project>
