@@ -10,4 +10,9 @@
     <PackageReference Include="MediatR" Version="12.4.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SimpleCare.BedWards.Boundary\SimpleCare.BedWards.Boundary.csproj" />
+    <ProjectReference Include="..\SimpleCare.EmergencyWards.Boundary\SimpleCare.EmergencyWards.Boundary.csproj" />
+  </ItemGroup>
+
 </Project>

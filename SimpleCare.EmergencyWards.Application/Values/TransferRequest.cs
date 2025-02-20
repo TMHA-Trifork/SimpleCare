@@ -1,3 +1,3 @@
 ﻿namespace SimpleCare.EmergencyWards.Application.Values;
 
-public record TransferRequest(Guid patientId, string familyName, string givenNames, string wardIdentifier);
+public record TransferRequest(Guid PatientId, string FamilyName, string GivenNames, string WardIdentifier);

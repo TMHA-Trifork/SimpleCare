@@ -25,9 +25,7 @@ public static class EntityFrameworkInfrastructure
 
     public static IServiceCollection AddEntityFrameworkInfrastructure(this IServiceCollection services)
     {
-        services.AddDbContext<SimpleCareDbContext>(options =>
-            options.UseSqlServer("ConnectionString")
-        );
+        services.AddDbContext<SimpleCareDbContext>();
 
         services
             .AddScoped<IUnitOfWork, EntityFrameworkUnitOfWork>()

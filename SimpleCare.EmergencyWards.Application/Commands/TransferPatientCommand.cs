@@ -1,14 +1,32 @@
 ﻿using MediatR;
 using SimpleCare.EmergencyWards.Application.Values;
+using SimpleCare.EmergencyWards.Interfaces;
+using SimpleCare.Infrastructure.Interfaces.UnitOfWork;
 
 namespace SimpleCare.EmergencyWards.Application.Commands;
 
 public record TransferPatientCommand(TransferRequest TransferRequest) : IRequest;
 
-public class TransferPatientCommandHandler : IRequestHandler<TransferPatientCommand>
+public class TransferPatientCommandHandler(IUnitOfWork unitOfWork, IEmergencyWard emergencyWardRoot, IMediator mediator) : IRequestHandler<TransferPatientCommand>
 {
-    public Task Handle(TransferPatientCommand request, CancellationToken cancellationToken)
+    public async Task Handle(TransferPatientCommand request, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        try
+        {
+            var transferredEvent = emergencyWardRoot.TransferPatient(
+                request.TransferRequest.PatientId,
+                request.TransferRequest.FamilyName,
+                request.TransferRequest.GivenNames,
+                request.TransferRequest.WardIdentifier,
+                cancellationToken);
+
+            await mediator.Publish(transferredEvent, cancellationToken);
+
+            await unitOfWork.SaveChanges(cancellationToken);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("An error occurred while transferring the patient", ex);
+        }
     }
 }
