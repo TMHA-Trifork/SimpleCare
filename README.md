@@ -11,6 +11,12 @@ make
 ### .NET 8.0
 See <https://dotnet.microsoft.com/en-us/download>
 
+### EF Core Tools
+
+```bash
+dotnet tool install --global dotnet-ef
+```
+
 ### GNU make
 
 Install on Windows:
