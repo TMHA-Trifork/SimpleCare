@@ -11,7 +11,13 @@ RUN dotnet restore -a $TARGETARCH && \
 
 
 # Runtime stage
-FROM mcr.microsoft.com/dotnet/aspnet:8.0-noble-chiseled
+FROM mcr.microsoft.com/dotnet/aspnet:8.0-noble
+
+RUN apt-get update && \
+    apt-get -y --no-install-recommends install libicu-dev && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
 EXPOSE 8080
 WORKDIR /app
 COPY --link --from=build /app .
