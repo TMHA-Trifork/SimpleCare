@@ -1,4 +1,3 @@
-version: '3'
 services:
   db:
     image: mcr.microsoft.com/mssql/server
@@ -15,3 +14,14 @@ services:
       # Opens port 1433 on the container
       - '1433'
       # Where our data will be persisted
+
+  backend:
+    build: .
+    environment:
+      ASPNETCORE_HTTPS_PORTS: 8001
+      ASPNETCORE_Kestrel__Certificates__Default__Path: /https/cert.pfx
+    ports:
+      - "8000:8001"
+    volumes:
+      - ./secrets/:/home/app/.microsoft/usersecrets
+      - ./https/:/https/
