@@ -12,7 +12,7 @@ using SimpleCare.Infrastructure.UnitOfWork;
 namespace SimpleCare.Infrastructure.Migrations
 {
     [DbContext(typeof(SimpleCareDbContext))]
-    [Migration("20250220162053_InitialCreate")]
+    [Migration("20250221140756_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -24,6 +24,23 @@ namespace SimpleCare.Infrastructure.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("SimpleCare.BedWards.Domain.Encounter", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("PatientId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("BW_Encounters", (string)null);
+                });
 
             modelBuilder.Entity("SimpleCare.BedWards.Domain.IncomingPatient", b =>
                 {

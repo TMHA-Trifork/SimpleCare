@@ -8,7 +8,7 @@ namespace SimpleCare.Infrastructure.EmergencyWards;
 
 public class EmergencyPatientRepository : IEmergencyPatientRepository
 {
-    private DbSet<Patient> patients;
+    private readonly DbSet<Patient> patients;
 
     public EmergencyPatientRepository(SimpleCareDbContext dbContext)
     {

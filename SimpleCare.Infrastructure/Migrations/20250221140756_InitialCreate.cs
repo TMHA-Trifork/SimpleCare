@@ -14,6 +14,19 @@ namespace SimpleCare.Infrastructure.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "BW_Encounters",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    PatientId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BW_Encounters", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "BW_IncomingPatients",
                 columns: table => new
                 {
@@ -96,6 +109,9 @@ namespace SimpleCare.Infrastructure.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "BW_Encounters");
+
             migrationBuilder.DropTable(
                 name: "BW_IncomingPatients");
 

@@ -10,6 +10,7 @@ public class SimpleCareDbContext : DbContext
     public DbSet<SimpleCare.BedWards.Domain.Patient> BWPatients { get; set; }
     public DbSet<SimpleCare.BedWards.Domain.IncomingPatient> BWIncomingPatients { get; set; }
     public DbSet<SimpleCare.BedWards.Domain.Ward> BWWards { get; set; }
+    public DbSet<SimpleCare.BedWards.Domain.Encounter> BWEncounters { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -23,6 +24,7 @@ public class SimpleCareDbContext : DbContext
                 new SimpleCare.BedWards.Domain.Ward(Guid.Parse("C5E5F332-8C68-4059-94EA-180CA17AB1E4"), "M1", "Medical Department 1"),
                 new SimpleCare.BedWards.Domain.Ward(Guid.Parse("2EDD4F62-8B8A-437E-9EEF-5CB14DE87A94"), "M2", "Medical Department 2")
             );
+        modelBuilder.Entity<SimpleCare.BedWards.Domain.Encounter>().ToTable("BW_Encounters");
 
         base.OnModelCreating(modelBuilder);
     }

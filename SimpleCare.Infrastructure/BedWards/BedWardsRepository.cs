@@ -5,17 +5,16 @@ using SimpleCare.Infrastructure.UnitOfWork;
 
 namespace SimpleCare.Infrastructure.BedWards;
 
-public class BedWardsRepository : IBedWardsRepository
+public class BedWardsRepository(SimpleCareDbContext dbContext) : IBedWardsRepository
 {
-    private DbSet<Patient> patients;
-    private DbSet<IncomingPatient> incomingPatients;
-    private DbSet<Ward> wards;
+    private readonly DbSet<Patient> patients = dbContext.Set<Patient>();
+    private readonly DbSet<IncomingPatient> incomingPatients = dbContext.Set<IncomingPatient>();
+    private readonly DbSet<Ward> wards = dbContext.Set<Ward>();
+    private readonly DbSet<Encounter> encounters = dbContext.Set<Encounter>();
 
-    public BedWardsRepository(SimpleCareDbContext dbContext)
+    public async Task<IEnumerable<Patient>> GetAllPatients(CancellationToken cancellationToken)
     {
-        patients = dbContext.Set<Patient>();
-        incomingPatients = dbContext.Set<IncomingPatient>();
-        wards = dbContext.Set<Ward>();
+        return [.. await patients.ToListAsync(cancellationToken)];
     }
 
     public async Task<Patient> GetPatient(Guid patientId, CancellationToken cancellationToken)
@@ -26,20 +25,36 @@ public class BedWardsRepository : IBedWardsRepository
         return patient;
     }
 
-    public async Task<Patient> GetPatientByPersonalIdentifier(string personalIdentifier, CancellationToken cancellationToken)
+    public async Task<Patient?> GetPatientByPersonalIdentifier(string personalIdentifier, CancellationToken cancellationToken)
     {
-        var patient = await patients.FirstOrDefaultAsync(p => p.PersonalIdentifier == personalIdentifier, cancellationToken)
-            ?? throw new Exception($"Patient with personalIdentifier={personalIdentifier} not found");
+        var patient = await patients.FirstOrDefaultAsync(p => p.PersonalIdentifier == personalIdentifier, cancellationToken);
+        return patient;
+    }
+
+    public async Task<Ward?> GetWardByIdentifier(string wardIdentifier, CancellationToken cancellationToken)
+    {
+        var ward = await wards.FirstOrDefaultAsync(w => w.Identifier == wardIdentifier, cancellationToken);
+        return ward;
+    }
+
+    public async Task<IncomingPatient> GetIncomingPatient(Guid incomingPatientId, CancellationToken cancellationToken)
+    {
+        var patient = (await incomingPatients.FindAsync(incomingPatientId, cancellationToken))
+            ?? throw new Exception($"IncomingPatient with id={incomingPatientId} not found");
 
         return patient;
     }
 
-    public async Task<Ward> GetWardByIdentifier(string wardIdentifier, CancellationToken cancellationToken)
+    public async Task<IncomingPatient?> GetIncomingPatientByPatientId(Guid patientId, CancellationToken cancellationToken)
     {
-        var ward = (await wards.FindAsync(wardIdentifier, cancellationToken))
-            ?? throw new Exception($"Ward with wardIdentifier={wardIdentifier} not found");
+        var incomingPatient = await incomingPatients.FirstOrDefaultAsync(p => p.PatientId == patientId, cancellationToken);
+        return incomingPatient;
+    }
 
-        return ward;
+    public async Task<Encounter> GetActiveEncounterByPatientId(Guid patientId, CancellationToken cancellationToken)
+    {
+        var encounter = await encounters.FirstOrDefaultAsync(e => e.PatientId == patientId && e.Status == EncounterStatus.Admitted, cancellationToken);
+        return encounter;
     }
 
     public async Task AddPatient(Patient patient, CancellationToken cancellationToken)
@@ -50,5 +65,16 @@ public class BedWardsRepository : IBedWardsRepository
     public async Task AddIncomingPatient(IncomingPatient incomingPatient, CancellationToken cancellationToken)
     {
         await incomingPatients.AddAsync(incomingPatient, cancellationToken);
+    }
+
+    public async Task UpdateIncomingPatient(IncomingPatient incomingPatient, CancellationToken cancellationToken)
+    {
+        var p = await GetIncomingPatient(incomingPatient.Id, cancellationToken);
+        incomingPatients.Entry(p).CurrentValues.SetValues(incomingPatient);
+    }
+
+    public async Task AddEncounter(Encounter encounter, CancellationToken cancellationToken)
+    {
+        await encounters.AddAsync(encounter, cancellationToken);
     }
 }

@@ -22,6 +22,23 @@ namespace SimpleCare.Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("SimpleCare.BedWards.Domain.Encounter", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("PatientId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("BW_Encounters", (string)null);
+                });
+
             modelBuilder.Entity("SimpleCare.BedWards.Domain.IncomingPatient", b =>
                 {
                     b.Property<Guid>("Id")
