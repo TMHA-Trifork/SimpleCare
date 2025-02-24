@@ -32,7 +32,7 @@ public class EmergencyPatientRepository : IEmergencyPatientRepository
         await patients.AddAsync(patient, cancellationToken);
     }
 
-    public async void Update(Patient patient, CancellationToken cancellationToken)
+    public async Task Update(Patient patient, CancellationToken cancellationToken)
     {
         var p = await Get(patient.Id, cancellationToken);
         patients.Entry(p).CurrentValues.SetValues(patient);

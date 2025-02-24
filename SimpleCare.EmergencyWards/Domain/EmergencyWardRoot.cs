@@ -8,36 +8,25 @@ public class EmergencyWardRoot(IEmergencyPatientRepository patientRepository, IE
 {
     public Task<Patient> GetPatient(Guid patientId, CancellationToken cancellationToken)
     {
-        return patientRepository.Get(patientId, cancellationToken);
+        return Patient.Get(patientId, patientRepository, cancellationToken);
     }
 
     public Task<ImmutableList<Patient>> GetPatients(EmergencyPatientStatus[] status, CancellationToken cancellationToken)
     {
-        if (status.Length == 0)
-            status = [EmergencyPatientStatus.Registered, EmergencyPatientStatus.InTransfer, EmergencyPatientStatus.Discharged];
-
-        return patientRepository.GetAllWithStatusIn(status, cancellationToken);
+        return Patient.GetAll(status, patientRepository, cancellationToken);
     }
 
     public async Task<Encounter> RegisterPatient(string personalIdentifier, string familyName, string givenNames, string observation, CancellationToken cancellationToken)
     {
-        var patient = new Patient(Guid.NewGuid(), personalIdentifier, familyName, givenNames, EmergencyPatientStatus.Registered);
-        await patientRepository.Add(patient, cancellationToken);
-
-        var encounter = new Encounter(Guid.NewGuid(), patient.Id, observation);
-        await encounterRepository.Add(encounter, cancellationToken);
+        var patient = await Patient.Register(personalIdentifier, familyName, givenNames, patientRepository, cancellationToken);
+        var encounter = await Encounter.CreateNew(patient.Id, observation, encounterRepository, cancellationToken);
 
         return encounter;
     }
 
     public async Task<TransferredEvent> TransferPatient(Guid patientId, string wardIdentifier, string reason, CancellationToken cancellationToken)
     {
-        var patient = (await patientRepository.Get(patientId, cancellationToken))
-            ?? throw new InvalidOperationException($"Patient with ID {patientId} not found.");
-
-        patient = patient.Transfer(wardIdentifier);
-
-        patientRepository.Update(patient, cancellationToken);
+        var patient = await Patient.Transfer(patientId, wardIdentifier, patientRepository, cancellationToken);
 
         return new TransferredEvent(patient.PersonalIdentifier, patient.FamilyName, patient.GivenNames, wardIdentifier, reason);
     }

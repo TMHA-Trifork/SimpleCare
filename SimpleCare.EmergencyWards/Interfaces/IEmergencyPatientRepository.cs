@@ -9,5 +9,5 @@ public interface IEmergencyPatientRepository
     Task<ImmutableList<Patient>> GetAllWithStatusIn(EmergencyPatientStatus[] status, CancellationToken cancellationToken);
 
     Task Add(Patient patient, CancellationToken cancellationToken);
-    void Update(Patient patient, CancellationToken cancellationToken);
+    Task Update(Patient patient, CancellationToken cancellationToken);
 }
