@@ -1,6 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
+using SimpleCare.BedWards.Interfaces;
 using SimpleCare.EmergencyWards.Interfaces;
+using SimpleCare.Infrastructure.BedWards;
 using SimpleCare.Infrastructure.EmergencyWards;
 using SimpleCare.Infrastructure.Interfaces.UnitOfWork;
 using SimpleCare.Infrastructure.UnitOfWork;
@@ -13,7 +14,8 @@ public static class EntityFrameworkInfrastructure
     {
         services
             .AddScoped<IEmergencyPatientRepository, EmergencyPatientRepository>()
-            .AddScoped<IEmergencyEncounterRepository, EmergencyEncounterRepository>();
+            .AddScoped<IEmergencyEncounterRepository, EmergencyEncounterRepository>()
+            .AddScoped<IBedWardsRepository, BedWardsRepository>();
 
         return services;
     }
@@ -25,9 +27,7 @@ public static class EntityFrameworkInfrastructure
 
     public static IServiceCollection AddEntityFrameworkInfrastructure(this IServiceCollection services)
     {
-        services.AddDbContext<SimpleCareDbContext>(options =>
-            options.UseSqlServer("ConnectionString")
-        );
+        services.AddDbContext<SimpleCareDbContext>();
 
         services
             .AddScoped<IUnitOfWork, EntityFrameworkUnitOfWork>()

@@ -4,19 +4,21 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <InvariantGlobalization>false</InvariantGlobalization>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.2" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SimpleCare.BedWards\SimpleCare.BedWards.csproj" />
     <ProjectReference Include="..\SimpleCare.EmergencyWards\SimpleCare.EmergencyWards.csproj" />
     <ProjectReference Include="..\SimpleCare.Infrastructure.Interfaces\SimpleCare.Infrastructure.Interfaces.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="BedWards\" />
   </ItemGroup>
 
 </Project>

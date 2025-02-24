@@ -1,3 +1,3 @@
 ﻿namespace SimpleCare.BedWards.Application;
 
-public class BedWard;
+public class BedWardsApplication;

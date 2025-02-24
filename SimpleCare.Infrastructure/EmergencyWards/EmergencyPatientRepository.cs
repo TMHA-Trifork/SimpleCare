@@ -8,7 +8,7 @@ namespace SimpleCare.Infrastructure.EmergencyWards;
 
 public class EmergencyPatientRepository : IEmergencyPatientRepository
 {
-    private DbSet<Patient> patients;
+    private readonly DbSet<Patient> patients;
 
     public EmergencyPatientRepository(SimpleCareDbContext dbContext)
     {
@@ -30,5 +30,11 @@ public class EmergencyPatientRepository : IEmergencyPatientRepository
     public async Task Add(Patient patient, CancellationToken cancellationToken)
     {
         await patients.AddAsync(patient, cancellationToken);
+    }
+
+    public async void Update(Patient patient, CancellationToken cancellationToken)
+    {
+        var p = await Get(patient.Id, cancellationToken);
+        patients.Entry(p).CurrentValues.SetValues(patient);
     }
 }

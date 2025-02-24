@@ -14,6 +14,7 @@ public class RegisterPatientCommandHandler(IUnitOfWork unitOfWork, IEmergencyWar
         try
         {
             await emergencyWardRoot.RegisterPatient(
+                request.EmergencyRegistration.PersonalIdentifier,
                 request.EmergencyRegistration.FamilyName,
                 request.EmergencyRegistration.GivenNames,
                 request.EmergencyRegistration.Reason,

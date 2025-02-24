@@ -214,10 +214,46 @@
     "schemas": {
       "BedWardPatient": {
         "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "personalIdentifier": {
+            "type": "string",
+            "nullable": true
+          },
+          "familyName": {
+            "type": "string",
+            "nullable": true
+          },
+          "givenNames": {
+            "type": "string",
+            "nullable": true
+          }
+        },
         "additionalProperties": false
       },
       "BedWardPatientListItem": {
         "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "personalIdentifier": {
+            "type": "string",
+            "nullable": true
+          },
+          "familyName": {
+            "type": "string",
+            "nullable": true
+          },
+          "givenNames": {
+            "type": "string",
+            "nullable": true
+          }
+        },
         "additionalProperties": false
       },
       "EmergencyPatient": {
@@ -259,6 +295,10 @@
       "EmergencyRegistration": {
         "type": "object",
         "properties": {
+          "personalIdentifier": {
+            "type": "string",
+            "nullable": true
+          },
           "familyName": {
             "type": "string",
             "nullable": true
@@ -276,6 +316,12 @@
       },
       "PatientAdmission": {
         "type": "object",
+        "properties": {
+          "patientId": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
         "additionalProperties": false
       },
       "TransferRequest": {
@@ -294,6 +340,10 @@
             "nullable": true
           },
           "wardIdentifier": {
+            "type": "string",
+            "nullable": true
+          },
+          "reason": {
             "type": "string",
             "nullable": true
           }

@@ -31,7 +31,6 @@ namespace SimpleCare.API.Controllers
             return Ok(result);
         }
 
-
         [HttpPost("patients/admit", Name = "AdmitPatient")]
         public async Task<ActionResult> Admit(PatientAdmission admission, CancellationToken cancellationToken)
         {

@@ -1,3 +1,11 @@
-﻿namespace SimpleCare.BedWards.Application.Values;
+﻿using SimpleCare.BedWards.Domain;
 
-public record BedWardPatient;
+namespace SimpleCare.BedWards.Application.Values;
+
+public record BedWardPatient(Guid Id, string PersonalIdentifier, string FamilyName, string GivenNames)
+{
+    internal static BedWardPatient Map(Patient patient)
+    {
+        return new BedWardPatient(patient.Id, patient.PersonalIdentifier, patient.FamilyName, patient.GivenNames);
+    }
+}

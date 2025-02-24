@@ -1,0 +1,27 @@
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server
+    restart: always
+    environment:
+      ACCEPT_EULA: 'Y'
+      # You can use whatever password you like
+      MSSQL_SA_PASSWORD: 'WeLoveMicrosoft1234!'
+
+    ports:
+      # <Port exposed> : <MySQL Port running inside container>
+      - '1433:1433'
+    expose:
+      # Opens port 1433 on the container
+      - '1433'
+      # Where our data will be persisted
+
+  backend:
+    build: .
+    environment:
+      ASPNETCORE_HTTPS_PORTS: 8001
+      ASPNETCORE_Kestrel__Certificates__Default__Path: /https/cert.pfx
+    ports:
+      - "8000:8001"
+    volumes:
+      - ./secrets/:/home/app/.microsoft/usersecrets
+      - ./https/:/https/
