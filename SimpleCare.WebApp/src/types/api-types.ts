@@ -120,32 +120,49 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
-        BedWardPatient: Record<string, never>;
-        BedWardPatientListItem: Record<string, never>;
+        BedWardPatient: {
+            /** Format: uuid */
+            id?: string;
+            personalIdentifier?: string | null;
+            familyName?: string | null;
+            givenNames?: string | null;
+        };
+        BedWardPatientListItem: {
+            /** Format: uuid */
+            id?: string;
+            personalIdentifier?: string | null;
+            familyName?: string | null;
+            givenNames?: string | null;
+        };
         EmergencyPatient: {
             /** Format: uuid */
-            patientId: string;
+            patientId?: string;
             familyName?: string | null;
             givenNames?: string | null;
         };
         EmergencyPatientListItem: {
             /** Format: uuid */
-            patientId: string;
+            patientId?: string;
             familyName?: string | null;
             givenNames?: string | null;
         };
         EmergencyRegistration: {
+            personalIdentifier?: string | null;
             familyName?: string | null;
             givenNames?: string | null;
             reason?: string | null;
         };
-        PatientAdmission: Record<string, never>;
+        PatientAdmission: {
+            /** Format: uuid */
+            patientId?: string;
+        };
         TransferRequest: {
             /** Format: uuid */
-            patientId: string;
+            patientId?: string;
             familyName?: string | null;
             givenNames?: string | null;
             wardIdentifier?: string | null;
+            reason?: string | null;
         };
     };
     responses: never;
