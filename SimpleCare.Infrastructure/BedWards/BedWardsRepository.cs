@@ -51,7 +51,7 @@ public class BedWardsRepository(SimpleCareDbContext dbContext) : IBedWardsReposi
         return incomingPatient;
     }
 
-    public async Task<Encounter> GetActiveEncounterByPatientId(Guid patientId, CancellationToken cancellationToken)
+    public async Task<Encounter?> GetActiveEncounterByPatientId(Guid patientId, CancellationToken cancellationToken)
     {
         var encounter = await encounters.FirstOrDefaultAsync(e => e.PatientId == patientId && e.Status == EncounterStatus.Admitted, cancellationToken);
         return encounter;

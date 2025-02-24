@@ -97,6 +97,18 @@
           "EmergencyWard"
         ],
         "operationId": "GetEmergencyPatients",
+        "parameters": [
+          {
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/EmergencyPatientStatus"
+              }
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -288,9 +300,20 @@
           "givenNames": {
             "type": "string",
             "nullable": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/EmergencyPatientStatus"
           }
         },
         "additionalProperties": false
+      },
+      "EmergencyPatientStatus": {
+        "enum": [
+          "Registered",
+          "InTransfer",
+          "Discharged"
+        ],
+        "type": "string"
       },
       "EmergencyRegistration": {
         "type": "object",

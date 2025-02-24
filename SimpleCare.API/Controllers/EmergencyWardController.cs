@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using SimpleCare.EmergencyWards.Application.Commands;
 using SimpleCare.EmergencyWards.Application.Queries;
 using SimpleCare.EmergencyWards.Application.Values;
+using SimpleCare.EmergencyWards.Domain;
+
 using System.Net.Mime;
 
 namespace SimpleCare.API.Controllers;
@@ -13,9 +15,9 @@ public class EmergencyWardController(IMediator mediator, ILogger<EmergencyWardCo
 {
     [HttpGet("patients", Name = "GetEmergencyPatients")]
     [Produces(MediaTypeNames.Application.Json)]
-    public async Task<ActionResult<EmergencyPatientListItem[]>> GetPatients(CancellationToken cancellationToken)
+    public async Task<ActionResult<EmergencyPatientListItem[]>> GetPatients([FromQuery] EmergencyPatientStatus[] status, CancellationToken cancellationToken)
     {
-        var query = new GetPatientsQuery();
+        var query = new GetPatientsQuery(status);
         var result = await mediator.Send(query, cancellationToken);
 
         return Ok(result.ToArray());

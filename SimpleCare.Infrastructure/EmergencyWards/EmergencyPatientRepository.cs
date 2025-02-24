@@ -22,9 +22,9 @@ public class EmergencyPatientRepository : IEmergencyPatientRepository
         return patient;
     }
 
-    public async Task<ImmutableList<Patient>> GetAll(CancellationToken cancellationToken)
+    public async Task<ImmutableList<Patient>> GetAllWithStatusIn(EmergencyPatientStatus[] status, CancellationToken cancellationToken)
     {
-        return [.. await patients.ToListAsync(cancellationToken)];
+        return [.. await patients.Where(p => status.Contains(p.Status)).ToListAsync(cancellationToken)];
     }
 
     public async Task Add(Patient patient, CancellationToken cancellationToken)

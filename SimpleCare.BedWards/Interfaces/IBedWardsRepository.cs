@@ -13,7 +13,7 @@ public interface IBedWardsRepository
 
     Task<IncomingPatient?> GetIncomingPatientByPatientId(Guid patientId, CancellationToken cancellationToken);
 
-    Task<Encounter> GetActiveEncounterByPatientId(Guid patientId, CancellationToken cancellationToken);
+    Task<Encounter?> GetActiveEncounterByPatientId(Guid patientId, CancellationToken cancellationToken);
 
     Task AddPatient(Patient patient, CancellationToken cancellationToken);
 

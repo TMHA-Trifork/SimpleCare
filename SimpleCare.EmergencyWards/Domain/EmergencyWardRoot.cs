@@ -11,9 +11,12 @@ public class EmergencyWardRoot(IEmergencyPatientRepository patientRepository, IE
         return patientRepository.Get(patientId, cancellationToken);
     }
 
-    public Task<ImmutableList<Patient>> GetPatients(CancellationToken cancellationToken)
+    public Task<ImmutableList<Patient>> GetPatients(EmergencyPatientStatus[] status, CancellationToken cancellationToken)
     {
-        return patientRepository.GetAll(cancellationToken);
+        if (status.Length == 0)
+            status = [EmergencyPatientStatus.Registered, EmergencyPatientStatus.InTransfer, EmergencyPatientStatus.Discharged];
+
+        return patientRepository.GetAllWithStatusIn(status, cancellationToken);
     }
 
     public async Task<Encounter> RegisterPatient(string personalIdentifier, string familyName, string givenNames, string observation, CancellationToken cancellationToken)
