@@ -145,7 +145,10 @@ export interface components {
             patientId?: string;
             familyName?: string | null;
             givenNames?: string | null;
+            status?: components["schemas"]["EmergencyPatientStatus"];
         };
+        /** @enum {string} */
+        EmergencyPatientStatus: "Registered" | "InTransfer" | "Discharged";
         EmergencyRegistration: {
             personalIdentifier?: string | null;
             familyName?: string | null;
@@ -241,7 +244,9 @@ export interface operations {
     };
     GetEmergencyPatients: {
         parameters: {
-            query?: never;
+            query?: {
+                status?: components["schemas"]["EmergencyPatientStatus"][];
+            };
             header?: never;
             path?: never;
             cookie?: never;
