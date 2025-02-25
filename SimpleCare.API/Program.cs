@@ -12,6 +12,16 @@ using SimpleCare.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
+const string corsPolicy = "SimpleCareCorsPolicy";
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(corsPolicy, builder =>
+    {
+        builder.WithOrigins("http://localhost:3000", "https://localhost:3000");
+    });
+});
+
 builder.Services.AddEntityFrameworkInfrastructure();
 
 builder.Services.AddMediatR(cfg => cfg
@@ -39,6 +49,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors(corsPolicy);
 
 app.UseHttpsRedirection();
 
