@@ -15,7 +15,10 @@ public static class EntityFrameworkInfrastructure
         services
             .AddScoped<IEmergencyPatientRepository, EmergencyPatientRepository>()
             .AddScoped<IEmergencyEncounterRepository, EmergencyEncounterRepository>()
-            .AddScoped<IBedWardsRepository, BedWardsRepository>();
+            .AddScoped<IBedWardPatientRepository, BedWardPatientRepository>()
+            .AddScoped<IBedWardIncomingPatientRepository, BedWardIncomingPatientRepository>()
+            .AddScoped<IBedWardEncounterRepository, BedWardEncounterRepository>()
+            .AddScoped<IBedWardRepository, BedWardRepository>();
 
         return services;
     }
