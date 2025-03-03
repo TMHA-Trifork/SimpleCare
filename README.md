@@ -17,6 +17,12 @@ See <https://dotnet.microsoft.com/en-us/download>
 dotnet tool install --global dotnet-ef
 ```
 
+Run this command in the infrastructure project to build the database
+```
+dotnet ef database update
+```
+
+
 ### GNU make
 
 Install on Windows:
