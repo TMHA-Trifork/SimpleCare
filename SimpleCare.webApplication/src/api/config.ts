@@ -1,5 +1,5 @@
 export const API_CONFIG = {
-  baseUrl: 'http://localhost:5034'
+  baseUrl: 'https://localhost:7023'
 }
 
 export function getApiUrl(path: string): string {
