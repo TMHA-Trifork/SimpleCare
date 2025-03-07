@@ -20,7 +20,7 @@ public class EmergencyWardController(IMediator mediator, ILogger<EmergencyWardCo
         var query = new GetPatientsQuery(status);
         var result = await mediator.Send(query, cancellationToken);
 
-        return Ok(result.ToArray());
+        return Ok(result);
     }
 
     [HttpGet("patients/{patientId}", Name = "GetEmergencyPatient")]

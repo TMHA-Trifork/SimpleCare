@@ -18,7 +18,7 @@ namespace SimpleCare.API.Controllers
             var query = new GetPatientsQuery();
             var result = await mediator.Send(query, cancellationToken);
 
-            return Ok(result.ToArray());
+            return Ok(result);
         }
 
         [HttpGet("patients/{patientId}", Name = "GetBedWardPatient")]
