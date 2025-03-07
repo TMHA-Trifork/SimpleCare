@@ -3,6 +3,9 @@
 run:
 	docker compose build
 	docker compose up
+	push ./SimpleCare.Infrastructure/
+	dotnet ef database update
+	popd
 
 build:
 	dotnet build
