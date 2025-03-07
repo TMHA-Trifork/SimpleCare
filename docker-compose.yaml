@@ -15,13 +15,13 @@ services:
       - '1433'
       # Where our data will be persisted
 
-  backend:
-    build: .
-    environment:
-      ASPNETCORE_HTTPS_PORTS: 8001
-      ASPNETCORE_Kestrel__Certificates__Default__Path: /https/cert.pfx
-    ports:
-      - "8000:8001"
-    volumes:
-      - ./secrets/:/home/app/.microsoft/usersecrets
-      - ./https/:/https/
+  # backend:
+  #   build: .
+  #   environment:
+  #     ASPNETCORE_HTTPS_PORTS: 8001
+  #     ASPNETCORE_Kestrel__Certificates__Default__Path: /https/cert.pfx
+  #   ports:
+  #     - "8000:8001"
+  #   volumes:
+  #     - ./secrets/:/home/app/.microsoft/usersecrets
+  #     - ./https/:/https/
