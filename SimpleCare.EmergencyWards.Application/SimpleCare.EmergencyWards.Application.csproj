@@ -12,7 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SimpleCare.EmergencyWards.Boundary\SimpleCare.EmergencyWards.Boundary.csproj" />
-    <ProjectReference Include="..\SimpleCare.EmergencyWards\SimpleCare.EmergencyWards.csproj" />
+    <ProjectReference Include="..\SimpleCare.EmergencyWards.Domain\SimpleCare.EmergencyWards.Domain.csproj" />
     <ProjectReference Include="..\SimpleCare.Infrastructure.Interfaces\SimpleCare.Infrastructure.Interfaces.csproj" />
   </ItemGroup>
 
