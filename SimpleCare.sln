@@ -33,6 +33,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleCare.EmergencyWards.D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleCare.BedWards.Domain", "SimpleCare.BedWards.Domain\SimpleCare.BedWards.Domain.csproj", "{89BD84BA-ACBE-908E-F074-B2E682B7E19B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleCare.Architecture.Test", "SimpleCare.Architecture.Test\SimpleCare.Architecture.Test.csproj", "{95C97739-60B1-4926-A5C1-BBC6387FAE54}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,10 @@ Global
 		{89BD84BA-ACBE-908E-F074-B2E682B7E19B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89BD84BA-ACBE-908E-F074-B2E682B7E19B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{89BD84BA-ACBE-908E-F074-B2E682B7E19B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95C97739-60B1-4926-A5C1-BBC6387FAE54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95C97739-60B1-4926-A5C1-BBC6387FAE54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95C97739-60B1-4926-A5C1-BBC6387FAE54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95C97739-60B1-4926-A5C1-BBC6387FAE54}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
