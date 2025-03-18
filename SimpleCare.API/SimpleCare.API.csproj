@@ -26,6 +26,7 @@
     <ProjectReference Include="..\SimpleCare.BedWards.Application\SimpleCare.BedWards.Application.csproj" />
     <ProjectReference Include="..\SimpleCare.EmergencyWards.Application\SimpleCare.EmergencyWards.Application.csproj" />
     <ProjectReference Include="..\SimpleCare.Infrastructure\SimpleCare.Infrastructure.csproj" />
+    <ProjectReference Include="..\SimpleCare.Orderlies.Application\SimpleCare.Orderlies.Application.csproj" />
   </ItemGroup>
 
 </Project>

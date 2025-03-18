@@ -12,6 +12,8 @@ public class SimpleCareDbContext : DbContext
     public DbSet<SimpleCare.BedWards.Domain.Ward> BWWards { get; set; }
     public DbSet<SimpleCare.BedWards.Domain.Encounter> BWEncounters { get; set; }
 
+    public DbSet<SimpleCare.Orderlies.Domain.OrderlyTask> OLTasks { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<SimpleCare.EmergencyWards.Domain.Patient>().ToTable("EW_Patients");
@@ -25,6 +27,8 @@ public class SimpleCareDbContext : DbContext
                 new SimpleCare.BedWards.Domain.Ward(Guid.Parse("2EDD4F62-8B8A-437E-9EEF-5CB14DE87A94"), "M2", "Medical Department 2")
             );
         modelBuilder.Entity<SimpleCare.BedWards.Domain.Encounter>().ToTable("BW_Encounters");
+
+        modelBuilder.Entity<SimpleCare.Orderlies.Domain.OrderlyTask>().ToTable("OL_Tasks");
 
         base.OnModelCreating(modelBuilder);
     }
