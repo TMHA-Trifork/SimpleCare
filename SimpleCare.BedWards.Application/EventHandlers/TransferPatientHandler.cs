@@ -1,5 +1,6 @@
 ﻿using MediatR;
-using SimpleCare.BedWards.Interfaces;
+
+using SimpleCare.BedWards.Domain.Interfaces;
 using SimpleCare.EmergencyWards.Boundary.Events;
 
 namespace SimpleCare.BedWards.Application.EventHandlers;

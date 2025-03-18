@@ -1,4 +1,4 @@
-﻿using SimpleCare.BedWards.Interfaces;
+﻿using SimpleCare.BedWards.Domain.Interfaces;
 
 namespace SimpleCare.BedWards.Domain;
 

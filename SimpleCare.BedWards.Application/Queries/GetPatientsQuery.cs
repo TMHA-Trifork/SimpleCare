@@ -1,7 +1,7 @@
 ﻿using MediatR;
 
 using SimpleCare.BedWards.Application.Values;
-using SimpleCare.BedWards.Interfaces;
+using SimpleCare.BedWards.Domain.Interfaces;
 
 using System.Collections.Immutable;
 

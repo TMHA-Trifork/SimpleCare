@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using SimpleCare.BedWards.Interfaces;
-using SimpleCare.EmergencyWards.Interfaces;
+
+using SimpleCare.BedWards.Domain.Interfaces;
+using SimpleCare.EmergencyWards.Domain.Interfaces;
 using SimpleCare.Infrastructure.BedWards;
 using SimpleCare.Infrastructure.EmergencyWards;
 using SimpleCare.Infrastructure.Interfaces.UnitOfWork;

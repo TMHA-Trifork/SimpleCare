@@ -1,7 +1,9 @@
 ﻿using MediatR;
+
 using SimpleCare.EmergencyWards.Application.Values;
 using SimpleCare.EmergencyWards.Domain;
-using SimpleCare.EmergencyWards.Interfaces;
+using SimpleCare.EmergencyWards.Domain.Interfaces;
+
 using System.Collections.Immutable;
 
 namespace SimpleCare.EmergencyWards.Application.Queries;

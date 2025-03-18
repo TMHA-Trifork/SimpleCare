@@ -1,7 +1,4 @@
-﻿
-using SimpleCare.BedWards.Domain;
-
-namespace SimpleCare.BedWards.Interfaces;
+﻿namespace SimpleCare.BedWards.Domain.Interfaces;
 
 public interface IBedWard
 {

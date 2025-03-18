@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+
 using SimpleCare.EmergencyWards.Domain;
-using SimpleCare.EmergencyWards.Interfaces;
+using SimpleCare.EmergencyWards.Domain.Interfaces;
 using SimpleCare.Infrastructure.UnitOfWork;
 
 namespace SimpleCare.Infrastructure.EmergencyWards;

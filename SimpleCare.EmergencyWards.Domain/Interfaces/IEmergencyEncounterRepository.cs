@@ -1,6 +1,4 @@
-﻿using SimpleCare.EmergencyWards.Domain;
-
-namespace SimpleCare.EmergencyWards.Interfaces;
+﻿namespace SimpleCare.EmergencyWards.Domain.Interfaces;
 
 public interface IEmergencyEncounterRepository
 {

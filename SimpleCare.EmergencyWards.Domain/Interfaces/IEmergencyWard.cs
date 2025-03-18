@@ -1,8 +1,8 @@
-﻿using SimpleCare.EmergencyWards.Domain;
-using SimpleCare.EmergencyWards.Domain.Events;
+﻿using SimpleCare.EmergencyWards.Domain.Events;
+
 using System.Collections.Immutable;
 
-namespace SimpleCare.EmergencyWards.Interfaces;
+namespace SimpleCare.EmergencyWards.Domain.Interfaces;
 
 public interface IEmergencyWard
 {
