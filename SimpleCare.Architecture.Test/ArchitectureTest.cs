@@ -6,6 +6,26 @@ namespace SimpleCare.Architecture.Test;
 public class ArchitectureTest
 {
     [Fact]
+    public void ProjectNamingShouldFollowConvention()
+    {
+        var apiAssembly = typeof(EmergencyWardController).Assembly;
+
+        var assemblyNames = apiAssembly.GetReferencedAssemblies();
+
+        var disallowedReferences = assemblyNames
+            .Where(assemblyName =>
+                (assemblyName.Name?.StartsWith("SimpleCare") ?? false) &&
+                !((assemblyName.Name?.EndsWith("Test") ?? false) ||
+                  (assemblyName.Name?.EndsWith("Application") ?? false) ||
+                  (assemblyName.Name?.EndsWith("Boundary") ?? false) ||
+                  (assemblyName.Name?.EndsWith("Domain") ?? false) ||
+                  (assemblyName.Name?.EndsWith("Infrastructure") ?? false) ||
+                  (assemblyName.Name?.EndsWith("Infrastructure.Interfaces") ?? false)));
+
+        Assert.False(disallowedReferences.Any(), "Project names should follow the naming convention");
+    }
+
+    [Fact]
     public void DomainLibrariesShouldNotReferenceAnyOtherSolutionLibraries()
     {
         var apiAssembly = typeof(EmergencyWardController).Assembly;
