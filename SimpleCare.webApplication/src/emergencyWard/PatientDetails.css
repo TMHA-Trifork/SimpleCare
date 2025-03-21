@@ -1,0 +1,44 @@
+.patient-details-container {
+  padding: 20px;
+  max-width: 600px;
+  margin: 50px auto;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+.patient-details-container h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.patient-details-title {
+  font-size: 2.5rem;
+  color: #333;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  text-align: center; /* Aligns the title to match Emergency Ward */
+}
+
+.patient-details-container p {
+  font-size: 1.2rem;
+  margin: 10px 0;
+  color: #555;
+}
+
+.back-button {
+  margin-top: 20px;
+  padding: 10px 15px;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #2370c2;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.back-button:hover {
+  background-color: #0056b3;
+}
