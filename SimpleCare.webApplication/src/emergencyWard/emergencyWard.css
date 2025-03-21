@@ -92,3 +92,92 @@
 .view-details-button:hover {
   background-color: #0056b3;
 }
+
+.register-button-toggle {
+  margin-bottom: 20px;
+  padding: 10px 15px;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.register-button-toggle:hover {
+  background-color: #0056b3;
+}
+
+.register-form-container {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-out;
+  background-color: #f9f9f9; /* Light background color */
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.register-form-container.visible {
+  max-height: 300px;
+  transition: max-height 0.5s ease-in;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+  width: 80%;
+  max-width: 600px;
+  position: relative;
+}
+
+.form-row {
+  display: flex;
+  gap: 10px;
+}
+
+.register-form input {
+  flex: 1;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.register-button {
+  align-self: flex-end; /* Align the button to the bottom right */
+  padding: 5px 15px;
+  font-size: 0.9rem;
+  color: #fff;
+  background-color: #0ab120;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.register-button:hover {
+  background-color: #43b452;
+}
+
+.submit-row {
+  display: flex;
+  justify-content: flex-end; /* Align the button to the right */
+}
+
+.submit-button {
+  padding: 5px 10px; /* Smaller size */
+  font-size: 0.9rem;
+  color: #fff;
+  background-color: #28a745;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+  background-color: #218838;
+}
