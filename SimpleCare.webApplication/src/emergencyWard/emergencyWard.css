@@ -112,7 +112,10 @@
 .register-form-container {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.5s ease-out;
+  visibility: hidden; /* Hide the form when not visible */
+  opacity: 0; /* Make the form fully transparent */
+  transition: max-height 0.5s ease-out, visibility 0.5s ease-out,
+    opacity 0.5s ease-out;
   background-color: #f9f9f9; /* Light background color */
   padding: 10px;
   border-radius: 5px;
@@ -120,7 +123,10 @@
 
 .register-form-container.visible {
   max-height: 300px;
-  transition: max-height 0.5s ease-in;
+  visibility: visible; /* Show the form when visible */
+  opacity: 1; /* Make the form fully opaque */
+  transition: max-height 0.5s ease-in, visibility 0.5s ease-in,
+    opacity 0.5s ease-in;
 }
 
 .register-form {

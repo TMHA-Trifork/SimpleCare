@@ -69,7 +69,7 @@ const EmergencyWard: React.FC = () => {
       <button className="register-button-toggle" onClick={handleFormToggle}>
         {isFormVisible ? "Close Form" : "Register Patient"}
       </button>
-      <div
+      {<div
         className={`register-form-container ${isFormVisible ? "visible" : ""}`}
       >
         <form onSubmit={handleFormSubmit} className="register-form">
@@ -113,7 +113,7 @@ const EmergencyWard: React.FC = () => {
             </button>
           </div>
         </form>
-      </div>
+      </div>}
       <table className="emergency-ward-table">
         <thead>
           <tr>
