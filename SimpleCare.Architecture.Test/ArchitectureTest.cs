@@ -77,8 +77,11 @@ public class ArchitectureTest
             Assert.True(infrastructureReference is null, $"{applicationAssembly.GetName().Name} has a reference to infrastructure library");
 
             var domainName = applicationAssembly.GetName().Name?.Replace(".Application", ".Domain") ?? string.Empty;
+            var applicationName = applicationAssembly.GetName().Name ?? string.Empty;
             var otherDomainReferences = allReferenced
-                .Where(assemblyName => (assemblyName.Name?.EndsWith(".Domain") ?? false) && (assemblyName.Name != domainName));
+                .Where(assemblyName =>
+                    (assemblyName.Name?.EndsWith(".Domain") ?? false) && (assemblyName.Name != domainName) ||
+                    (assemblyName.Name?.EndsWith(".Application") ?? false && (assemblyName.Name != applicationName)));
 
             Assert.False(otherDomainReferences.Any(), $"{applicationAssembly.GetName().Name} has references to other modules domain library");
         }
