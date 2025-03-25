@@ -1,0 +1,189 @@
+.emergency-ward-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Arial, sans-serif;
+}
+
+.emergency-ward-title {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 20px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.emergency-ward-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 80%;
+  max-width: 600px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.emergency-ward-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  border-bottom: 1px solid #ddd;
+  font-size: 1.2rem;
+  color: #555;
+  transition: background 0.3s, color 0.3s;
+}
+
+.emergency-ward-list-item:last-child {
+  border-bottom: none;
+}
+
+.emergency-ward-list-item:hover {
+  background: #f0f8ff;
+  color: #333;
+}
+
+.emergency-ward-table {
+  width: 80%;
+  max-width: 800px;
+  margin: 0 auto;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.emergency-ward-table th,
+.emergency-ward-table td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  font-size: 1.2rem;
+  color: #555;
+}
+
+.emergency-ward-table th {
+  background: #d4d4d4;
+  font-weight: bold;
+  color: #333;
+}
+
+.emergency-ward-table tr:last-child td {
+  border-bottom: none;
+}
+
+.emergency-ward-row:hover {
+  background: #f0f8ff;
+}
+
+.view-details-button {
+  padding: 5px 10px;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #2370c2;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.view-details-button:hover {
+  background-color: #0056b3;
+}
+
+.register-button-toggle {
+  margin-bottom: 20px;
+  padding: 10px 15px;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.register-button-toggle:hover {
+  background-color: #0056b3;
+}
+
+.register-form-container {
+  max-height: 0;
+  overflow: hidden;
+  visibility: hidden; /* Hide the form when not visible */
+  opacity: 0; /* Make the form fully transparent */
+  transition: max-height 0.5s ease-out, visibility 0.5s ease-out,
+    opacity 0.5s ease-out;
+  background-color: #f9f9f9; /* Light background color */
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.register-form-container.visible {
+  max-height: 300px;
+  visibility: visible; /* Show the form when visible */
+  opacity: 1; /* Make the form fully opaque */
+  transition: max-height 0.5s ease-in, visibility 0.5s ease-in,
+    opacity 0.5s ease-in;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+  width: 80%;
+  max-width: 600px;
+  position: relative;
+}
+
+.form-row {
+  display: flex;
+  gap: 10px;
+}
+
+.register-form input {
+  flex: 1;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.register-button {
+  align-self: flex-end; /* Align the button to the bottom right */
+  padding: 5px 15px;
+  font-size: 0.9rem;
+  color: #fff;
+  background-color: #0ab120;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.register-button:hover {
+  background-color: #43b452;
+}
+
+.submit-row {
+  display: flex;
+  justify-content: flex-end; /* Align the button to the right */
+}
+
+.submit-button {
+  padding: 5px 10px; /* Smaller size */
+  font-size: 0.9rem;
+  color: #fff;
+  background-color: #28a745;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+  background-color: #218838;
+}
