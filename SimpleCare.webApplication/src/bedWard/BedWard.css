@@ -1,0 +1,47 @@
+.bed-ward-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Arial, sans-serif;
+}
+
+.bed-ward-title {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 20px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.bed-ward-table {
+  width: 80%;
+  max-width: 800px;
+  margin: 0 auto;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.bed-ward-table th,
+.bed-ward-table td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  font-size: 1.2rem;
+  color: #555;
+}
+
+.bed-ward-table th {
+  background: #d4d4d4;
+  font-weight: bold;
+  color: #333;
+}
+
+.bed-ward-table tr:last-child td {
+  border-bottom: none;
+}
+
+.bed-ward-row:hover {
+  background: #f0f8ff;
+}

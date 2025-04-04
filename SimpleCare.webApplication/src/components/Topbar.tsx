@@ -13,6 +13,9 @@ const Topbar: React.FC = () => {
         <Link to="/emergency-ward" className="topbar-link">
           Emergency Ward
         </Link>
+        <Link to="/bed-ward" className="topbar-link">
+          Bed Ward
+        </Link>
       </div>
     </div>
   );
