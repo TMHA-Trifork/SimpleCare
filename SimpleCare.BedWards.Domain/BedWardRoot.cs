@@ -23,6 +23,11 @@ public class BedWardRoot(
         return await Ward.GetAll(bedWardRepository, cancellationToken);
     }
 
+    public Task<Ward> GetWard(Guid wardId, CancellationToken cancellationToken)
+    {
+        return Ward.Get(wardId, bedWardRepository, cancellationToken);
+    }
+
     public async Task RegisterIncomingPatient(string personalIdentifier, string familyName, string givenNames, string wardIdentifier, string reason, CancellationToken cancellationToken)
     {
         var ward = await Ward.Get(wardIdentifier, bedWardRepository, cancellationToken);

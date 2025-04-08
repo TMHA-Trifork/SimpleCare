@@ -12,7 +12,7 @@ public class TransferPatientHandler(IBedWard bedWard) : INotificationHandler<Eme
         await bedWard.RegisterIncomingPatient(notification.PersonalIdentifier,
             notification.FamilyName,
             notification.GivenNames,
-            notification.WardIdentifier,
+            notification.Ward.Identifier,
             notification.Reason,
             cancellationToken);
     }
