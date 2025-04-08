@@ -15,4 +15,8 @@ public class BedWardRepository(SimpleCareDbContext dbContext) : IBedWardReposito
         var ward = await wards.FirstOrDefaultAsync(w => w.Identifier == wardIdentifier, cancellationToken);
         return ward;
     }
+    public async Task<IEnumerable<Ward>> GetAll(CancellationToken cancellationToken)
+    {
+        return [.. await wards.ToListAsync(cancellationToken)];
+    }
 }

@@ -10,4 +10,9 @@ public record Ward(Guid Id, string Identifier, string Name)
             ?? throw new InvalidOperationException($"Ward identifier={wardIdentifier} not found.");
 
     }
+
+    internal static async Task<IEnumerable<Ward>> GetAll(IBedWardRepository bedWardRepository, CancellationToken cancellationToken)
+    {
+        return await bedWardRepository.GetAll(cancellationToken);
+    }
 }

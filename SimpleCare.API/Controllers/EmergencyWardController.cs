@@ -33,6 +33,16 @@ public class EmergencyWardController(IMediator mediator, ILogger<EmergencyWardCo
         return Ok(result);
     }
 
+    [HttpGet("recipient-wards", Name = "GetRecipientWards")]
+    [Produces(MediaTypeNames.Application.Json)]
+    public async Task<ActionResult<RecipientWardItem[]>> GetRecipientWards(CancellationToken cancellationToken)
+    {
+        var query = new GetRecipientWardsQuery();
+        var result = await mediator.Send(query, cancellationToken);
+
+        return Ok(result);
+    }
+
     [HttpPost("patients/register", Name = "RegisterEmergencyPatient")]
     public async Task<ActionResult> Register(EmergencyRegistration emergencyRegistration, CancellationToken cancellationToken)
     {
