@@ -36,7 +36,7 @@ public class SimpleCareDbContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder
-            .UseSqlServer("Server=localhost;Database=SimpleCare;User ID=sa;Password=WeLoveMicrosoft1234!;Encrypt=False");
+            .UseSqlServer("Server=localhost, 1433;Database=SimpleCare;User ID=sa;Password=WeLoveMicrosoft1234!;Encrypt=False");
 
         base.OnConfiguring(optionsBuilder);
     }

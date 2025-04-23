@@ -157,6 +157,29 @@
         }
       }
     },
+    "/api/emergency-wards/recipient-wards": {
+      "get": {
+        "tags": [
+          "EmergencyWard"
+        ],
+        "operationId": "GetRecipientWards",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RecipientWardItem"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/emergency-wards/patients/register": {
       "post": {
         "tags": [
@@ -347,6 +370,24 @@
         },
         "additionalProperties": false
       },
+      "RecipientWardItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "identifier": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "TransferRequest": {
         "type": "object",
         "properties": {
@@ -362,9 +403,9 @@
             "type": "string",
             "nullable": true
           },
-          "wardIdentifier": {
+          "wardId": {
             "type": "string",
-            "nullable": true
+            "format": "uuid"
           },
           "reason": {
             "type": "string",

@@ -1,4 +1,6 @@
 ﻿using MediatR;
+
+using SimpleCare.BedWards.Boundary.Queries;
 using SimpleCare.EmergencyWards.Application.Mappers;
 using SimpleCare.EmergencyWards.Application.Values;
 using SimpleCare.EmergencyWards.Interfaces;
@@ -14,13 +16,16 @@ public class TransferPatientCommandHandler(IUnitOfWork unitOfWork, IEmergencyWar
     {
         try
         {
+            var wardQuery = new GetBedWardQuery(request.TransferRequest.WardId);
+            var bedWard = await mediator.Send(wardQuery);
+
             var transferredEvent = await emergencyWardRoot.TransferPatient(
                 request.TransferRequest.PatientId,
-                request.TransferRequest.WardIdentifier,
+                bedWard.Identifier,
                 request.TransferRequest.Reason,
                 cancellationToken);
 
-            await mediator.Publish(EmergencyEventsMapper.Map(transferredEvent), cancellationToken);
+            await mediator.Publish(transferredEvent.MapWith(bedWard), cancellationToken);
 
             await unitOfWork.SaveChanges(cancellationToken);
         }

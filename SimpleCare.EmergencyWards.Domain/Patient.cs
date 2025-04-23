@@ -10,7 +10,7 @@ public enum EmergencyPatientStatus
     Discharged
 }
 
-public record Patient(Guid Id, string PersonalIdentifier, string FamilyName, string GivenNames, EmergencyPatientStatus Status, string? wardIdentifier = null)
+public record Patient(Guid Id, string PersonalIdentifier, string FamilyName, string GivenNames, EmergencyPatientStatus Status, string? WardIdentifier = null)
 {
     internal static Task<Patient> Get(Guid patientId, IEmergencyPatientRepository patientRepository, CancellationToken cancellationToken)
     {
@@ -41,7 +41,7 @@ public record Patient(Guid Id, string PersonalIdentifier, string FamilyName, str
         patient = patient with
         {
             Status = EmergencyPatientStatus.InTransfer,
-            wardIdentifier = wardIdentifier
+            WardIdentifier = wardIdentifier
         };
 
         await patientRepository.Update(patient, cancellationToken);
