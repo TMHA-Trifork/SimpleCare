@@ -11,7 +11,7 @@ public class TransferPatientHandler(IOrderly orderlyRoot) : INotificationHandler
     {
         await orderlyRoot.RegisterNewTask(
             "Emergency Unit",
-            notification.WardIdentifier,
+            notification.Ward.Identifier,
             $"Transfer patient {notification.PersonalIdentifier} - {notification.GivenNames} {notification.FamilyName}",
             cancellationToken);
     }
