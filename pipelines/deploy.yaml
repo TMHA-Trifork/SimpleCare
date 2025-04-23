@@ -15,37 +15,37 @@ variables:
   artifactName: henningsTestWeb
 
 stages:
-  - stage: ReleaseBuild
-    displayName: "Release Build"
-    jobs:
-      - job:
-        steps:
-          - task: NuGetToolInstaller@1
-
-          - task: NuGetCommand@2
-            inputs:
-              restoreSolution: '$(solution)'
-
-          - task: VSBuild@1
-            inputs:
-              solution: '$(solution)'
-              msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:DesktopBuildPackageLocation="$(build.artifactStagingDirectory)\WebApp.zip" /p:DeployIisAppPath="Hennings Test Web"'
-              platform: '$(buildPlatform)'
-              configuration: '$(buildConfiguration)'
-
-          - task: VSTest@2
-            inputs:
-              platform: '$(buildPlatform)'
-              configuration: '$(buildConfiguration)'
-
-          - task: PublishBuildArtifacts@1
-            inputs:
-              pathToPublish: '$(Build.ArtifactStagingDirectory)'
-              artifactName: $(artifactName)
+  # - stage: ReleaseBuild
+  #   displayName: "Release Build"
+  #   jobs:
+  #     - job:
+  #       steps:
+  #         - task: NuGetToolInstaller@1
+  #
+  #         - task: NuGetCommand@2
+  #           inputs:
+  #             restoreSolution: '$(solution)'
+  #
+  #         - task: VSBuild@1
+  #           inputs:
+  #             solution: '$(solution)'
+  #             msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:DesktopBuildPackageLocation="$(build.artifactStagingDirectory)\WebApp.zip" /p:DeployIisAppPath="Hennings Test Web"'
+  #             platform: '$(buildPlatform)'
+  #             configuration: '$(buildConfiguration)'
+  #
+  #         - task: VSTest@2
+  #           inputs:
+  #             platform: '$(buildPlatform)'
+  #             configuration: '$(buildConfiguration)'
+  #
+  #         - task: PublishBuildArtifacts@1
+  #           inputs:
+  #             pathToPublish: '$(Build.ArtifactStagingDirectory)'
+  #             artifactName: $(artifactName)
 
   - stage: Dev
     displayName: "Dev Deploy"
-    dependsOn: ReleaseBuild
+    # dependsOn: ReleaseBuild
     jobs:
       - deployment: Dev
         displayName: Dev
@@ -58,6 +58,16 @@ stages:
           runOnce:
             deploy:
               steps:
+                # Download artifacts from a specific pipeline.
+                - task: DownloadPipelineArtifact@2
+                  inputs:
+                    buildType: specific
+                    project: hcnp
+                    definition: 1
+                    buildVersionToDownload: latest
+                    artifactName: $(artifactName)
+                    targetPath: "$(Pipeline.Workspace)/$(artifactName)"
+
                 - task: IISWebAppDeploymentOnMachineGroup@0
                   inputs:
                     WebSiteName: "Hennings Test Web"
