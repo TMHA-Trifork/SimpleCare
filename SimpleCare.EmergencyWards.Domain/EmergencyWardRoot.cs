@@ -1,10 +1,7 @@
-﻿using System.Runtime.CompilerServices;
-using SimpleCare.EmergencyWards.Domain.Events;
+﻿using SimpleCare.EmergencyWards.Domain.Events;
 using SimpleCare.EmergencyWards.Domain.Interfaces;
 
 using System.Collections.Immutable;
-
-[assembly: InternalsVisibleTo("SimpleCare.EmergencyWards.Tests")]
 
 namespace SimpleCare.EmergencyWards.Domain;
 

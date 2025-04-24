@@ -37,6 +37,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleCare.Architecture.Tes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleCare.EmergencyWards.Tests", "SimpleCare.EmergencyWards.Tests\SimpleCare.EmergencyWards.Tests.csproj", "{593AA639-4A12-433D-9446-C0A5E4778037}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleCare.Infrastructure.Test", "SimpleCare.Infrastructure.Test\SimpleCare.Infrastructure.Test.csproj", "{EFB313A9-DBE0-40F2-80E6-593DAFB84355}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,10 @@ Global
 		{593AA639-4A12-433D-9446-C0A5E4778037}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{593AA639-4A12-433D-9446-C0A5E4778037}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{593AA639-4A12-433D-9446-C0A5E4778037}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFB313A9-DBE0-40F2-80E6-593DAFB84355}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFB313A9-DBE0-40F2-80E6-593DAFB84355}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFB313A9-DBE0-40F2-80E6-593DAFB84355}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFB313A9-DBE0-40F2-80E6-593DAFB84355}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
