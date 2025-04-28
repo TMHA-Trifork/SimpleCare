@@ -9,6 +9,7 @@ using SimpleCare.EmergencyWards.Boundary;
 using SimpleCare.EmergencyWards.Domain;
 using SimpleCare.EmergencyWards.Domain.Interfaces;
 using SimpleCare.Infrastructure;
+using SimpleCare.Infrastructure.UnitOfWork;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,6 +29,8 @@ builder.Services.AddCors(options =>
     });
 });
 
+
+builder.Services.Configure<SqlServerSettings>(builder.Configuration.GetSection("SqlServerSettings"));
 builder.Services.AddEntityFrameworkInfrastructure();
 
 builder.Services.AddMediatR(cfg => cfg
@@ -60,3 +63,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+public partial class Program { }

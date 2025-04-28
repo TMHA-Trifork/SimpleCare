@@ -39,6 +39,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleCare.EmergencyWards.T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleCare.Infrastructure.Test", "SimpleCare.Infrastructure.Test\SimpleCare.Infrastructure.Test.csproj", "{EFB313A9-DBE0-40F2-80E6-593DAFB84355}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleCare.API.Test", "SimpleCare.API.Test\SimpleCare.API.Test.csproj", "{1DCB4093-F5C9-42F3-B955-4187B4A29B47}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -93,6 +95,10 @@ Global
 		{EFB313A9-DBE0-40F2-80E6-593DAFB84355}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EFB313A9-DBE0-40F2-80E6-593DAFB84355}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EFB313A9-DBE0-40F2-80E6-593DAFB84355}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DCB4093-F5C9-42F3-B955-4187B4A29B47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DCB4093-F5C9-42F3-B955-4187B4A29B47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DCB4093-F5C9-42F3-B955-4187B4A29B47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DCB4093-F5C9-42F3-B955-4187B4A29B47}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

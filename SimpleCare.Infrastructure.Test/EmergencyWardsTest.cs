@@ -1,3 +1,5 @@
+using Microsoft.Extensions.Options;
+
 using SimpleCare.EmergencyWards.Domain;
 using SimpleCare.EmergencyWards.Domain.Interfaces;
 using SimpleCare.Infrastructure.EmergencyWards;
@@ -118,7 +120,7 @@ public class EmergencyWardsTestFixure : IAsyncLifetime
 {
     private readonly MsSqlContainer msSqlContainer;
 
-    private readonly SimpleCareDbContext dbContext = new SimpleCareDbContext();
+    private SimpleCareDbContext? dbContext;
 
     public IEmergencyPatientRepository PatientRepository => new EmergencyPatientRepository(dbContext);
     public IEmergencyEncounterRepository EncounterRepository => new EmergencyEncounterRepository(dbContext);
@@ -135,6 +137,14 @@ public class EmergencyWardsTestFixure : IAsyncLifetime
     public async Task InitializeAsync()
     {
         await msSqlContainer.StartAsync();
+
+        dbContext = new SimpleCareDbContext(
+                Options.Create(
+                    new SqlServerSettings
+                    {
+                        ConnectionString = msSqlContainer.GetConnectionString(),
+                        Timeout = 30
+                    }));
         await dbContext.Database.EnsureCreatedAsync();
 
         await dbContext.EWPatients.AddRangeAsync([

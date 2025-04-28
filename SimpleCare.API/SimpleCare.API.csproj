@@ -27,5 +27,4 @@
     <ProjectReference Include="..\SimpleCare.EmergencyWards.Application\SimpleCare.EmergencyWards.Application.csproj" />
     <ProjectReference Include="..\SimpleCare.Infrastructure\SimpleCare.Infrastructure.csproj" />
   </ItemGroup>
-
 </Project>

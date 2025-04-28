@@ -1,8 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 namespace SimpleCare.Infrastructure.UnitOfWork;
 
-public class SimpleCareDbContext : DbContext
+public class SimpleCareDbContext(IOptions<SqlServerSettings> settings) : DbContext
 {
     public DbSet<SimpleCare.EmergencyWards.Domain.Patient> EWPatients { get; set; }
     public DbSet<SimpleCare.EmergencyWards.Domain.Encounter> Encounters { get; set; }
@@ -32,7 +33,7 @@ public class SimpleCareDbContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder
-            .UseSqlServer("Server=localhost, 1433;Database=SimpleCare;User ID=sa;Password=WeLoveMicrosoft1234!;Encrypt=False");
+            .UseSqlServer(settings.Value.ConnectionString, options => options.CommandTimeout(settings.Value.Timeout));
 
         base.OnConfiguring(optionsBuilder);
     }
