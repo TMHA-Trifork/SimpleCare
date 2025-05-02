@@ -69,6 +69,5 @@ export function renderWithRoute(
 }
 
 // Re-export everything from testing-library and add act
-// eslint-disable-next-line react-refresh/only-export-components
 export * from "@testing-library/react";
 export { act };
