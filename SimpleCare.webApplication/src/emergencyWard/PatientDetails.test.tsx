@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, Mock } from "vitest";
-import { renderWithRoute, act } from "../test/test-utils";
+import { renderWithRoute, act } from "../test/test-utils.tsx";
 import PatientDetails from "./PatientDetails";
 import * as api from "../api/emergencyPatients";
 
