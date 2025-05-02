@@ -1,6 +1,5 @@
-import { describe, it, expect, vi, beforeEach, afterEach, Mock } from "vitest";
-import { createRoot } from "react-dom/client";
-import { MemoryRouter, Route, Routes } from "react-router-dom";
+import { describe, it, expect, vi, Mock } from "vitest";
+import { renderWithRoute, act } from "../test/test-utils";
 import PatientDetails from "./PatientDetails";
 import * as api from "../api/emergencyPatients";
 
@@ -9,21 +8,6 @@ vi.mock("../api/emergencyPatients");
 const mockFetchEmergencyPatient = api.fetchEmergencyPatient as Mock;
 
 describe("PatientDetails", () => {
-  let container: HTMLDivElement;
-  let root: ReturnType<typeof createRoot>;
-
-  beforeEach(() => {
-    container = document.createElement("div");
-    document.body.appendChild(container);
-    root = createRoot(container);
-  });
-
-  afterEach(() => {
-    root.unmount();
-    document.body.removeChild(container);
-    vi.clearAllMocks();
-  });
-
   it("should match snapshot", async () => {
     mockFetchEmergencyPatient.mockResolvedValueOnce({
       patientId: "1",
@@ -31,22 +15,20 @@ describe("PatientDetails", () => {
       familyName: "Doe",
     });
 
-    root.render(
-      <MemoryRouter initialEntries={["/patient/1"]}>
-        <Routes>
-          <Route path="/patient/:id" element={<PatientDetails />} />
-        </Routes>
-      </MemoryRouter>
-    );
+    let container: HTMLElement;
 
-    await vi.waitFor(() => {
-      expect(container.textContent).toContain("John");
-      expect(container.textContent).toContain("Doe");
+    await act(async () => {
+      const result = renderWithRoute(
+        <PatientDetails />,
+        "/patient/:id",
+        "/patient/1"
+      );
+      container = result.container;
     });
 
-    await vi.waitFor(() => {
-      expect(container.innerHTML).toMatchSnapshot();
-    });
+    expect(container!.textContent).toContain("John");
+    expect(container!.textContent).toContain("Doe");
+    expect(container!.innerHTML).toMatchSnapshot();
   });
 
   it("displays patient details after loading", async () => {
@@ -56,17 +38,18 @@ describe("PatientDetails", () => {
       familyName: "Doe",
     });
 
-    root.render(
-      <MemoryRouter initialEntries={["/patient/1"]}>
-        <Routes>
-          <Route path="/patient/:id" element={<PatientDetails />} />
-        </Routes>
-      </MemoryRouter>
-    );
+    let container: HTMLElement;
 
-    await vi.waitFor(() => {
-      expect(container.textContent).toContain("John");
-      expect(container.textContent).toContain("Doe");
+    await act(async () => {
+      const result = renderWithRoute(
+        <PatientDetails />,
+        "/patient/:id",
+        "/patient/1"
+      );
+      container = result.container;
     });
+
+    expect(container!.textContent).toContain("John");
+    expect(container!.textContent).toContain("Doe");
   });
 });
