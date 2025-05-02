@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from "vitest";
-import { renderWithRouter } from "../test/test-utils";
+import { renderWithRouter } from "../test/test-utils.tsx";
 import TopBar from "./Topbar";
 
 describe("TopBar", () => {
