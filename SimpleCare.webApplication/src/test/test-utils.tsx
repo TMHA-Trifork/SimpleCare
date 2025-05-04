@@ -7,17 +7,14 @@ interface WrapperProps {
   children: React.ReactNode;
 }
 
-// Base wrapper without routing
 export function BasicWrapper({ children }: WrapperProps) {
   return <>{children}</>;
 }
 
-// Wrapper with routing context
 export function RouterWrapper({ children }: WrapperProps) {
   return <MemoryRouter>{children}</MemoryRouter>;
 }
 
-// Wrapper for components that need specific routes
 interface RouteWrapperProps extends WrapperProps {
   path: string;
   initialEntry?: string;
@@ -37,7 +34,6 @@ export function RouteWrapper({
   );
 }
 
-// Custom render functions
 export function renderWithoutRouter(
   ui: ReactElement,
   options?: Omit<RenderOptions, "wrapper">
@@ -68,6 +64,5 @@ export function renderWithRoute(
   });
 }
 
-// Re-export everything from testing-library and add act
 export * from "@testing-library/react";
 export { act };
