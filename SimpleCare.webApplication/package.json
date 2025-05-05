@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "openApi": "npx openapi-typescript ../OpenApi.json --output src/types/api-types.ts",
     "test": "vitest",
-    "coverage": "vitest run --coverage"
+    "coverage": "vitest run --coverage",
+    "test-output": "vitest run --reporter junit --outputFile.junit=./test-output.xml"
   },
   "dependencies": {
     "react": "^19.0.0",
