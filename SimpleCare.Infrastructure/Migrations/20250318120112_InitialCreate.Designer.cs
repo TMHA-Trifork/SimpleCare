@@ -12,7 +12,7 @@ using SimpleCare.Infrastructure.UnitOfWork;
 namespace SimpleCare.Infrastructure.Migrations
 {
     [DbContext(typeof(SimpleCareDbContext))]
-    [Migration("20250221140756_InitialCreate")]
+    [Migration("20250318120112_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -163,6 +163,35 @@ namespace SimpleCare.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("EW_Patients", (string)null);
+                });
+
+            modelBuilder.Entity("SimpleCare.Orderlies.Domain.OrderlyTask", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EndLocation")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset?>("EndTime")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("StartLocation")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset?>("StartTime")
+                        .HasColumnType("datetimeoffset");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("OL_Tasks", (string)null);
                 });
 #pragma warning restore 612, 618
         }

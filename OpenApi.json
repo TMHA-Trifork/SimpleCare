@@ -243,6 +243,75 @@
           }
         }
       }
+    },
+    "/api/orderly/tasks": {
+      "get": {
+        "tags": [
+          "Orderly"
+        ],
+        "operationId": "GetOrderlyTasks",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/OrderlyTaskListItem"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/orderly/Tasks/start": {
+      "post": {
+        "tags": [
+          "Orderly"
+        ],
+        "operationId": "StartTask",
+        "parameters": [
+          {
+            "name": "taskId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/orderly/Tasks/end": {
+      "post": {
+        "tags": [
+          "Orderly"
+        ],
+        "operationId": "EndTask",
+        "parameters": [
+          {
+            "name": "taskId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -355,6 +424,38 @@
           },
           "reason": {
             "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "OrderlyTaskListItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "startLocation": {
+            "type": "string",
+            "nullable": true
+          },
+          "endLocation": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "startTime": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "endTime": {
+            "type": "string",
+            "format": "date-time",
             "nullable": true
           }
         },

@@ -1,4 +1,4 @@
-﻿using SimpleCare.EmergencyWards.Domain.Interfaces;
+﻿using SimpleCare.EmergencyWards.Interfaces;
 
 namespace SimpleCare.EmergencyWards.Domain;
 

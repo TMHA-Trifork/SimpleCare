@@ -19,6 +19,7 @@
     <ProjectReference Include="..\SimpleCare.BedWards.Domain\SimpleCare.BedWards.Domain.csproj" />
     <ProjectReference Include="..\SimpleCare.EmergencyWards.Domain\SimpleCare.EmergencyWards.Domain.csproj" />
     <ProjectReference Include="..\SimpleCare.Infrastructure.Interfaces\SimpleCare.Infrastructure.Interfaces.csproj" />
+    <ProjectReference Include="..\SimpleCare.Orderlies.Domain\SimpleCare.Orderlies.Domain.csproj" />
   </ItemGroup>
 
 </Project>
