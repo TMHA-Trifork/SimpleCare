@@ -7,16 +7,6 @@ interface WrapperProps {
   children: React.ReactNode;
 }
 
-// Base wrapper without routing
-export function BasicWrapper({ children }: WrapperProps) {
-  return <>{children}</>;
-}
-
-// Wrapper with routing context
-export function RouterWrapper({ children }: WrapperProps) {
-  return <MemoryRouter>{children}</MemoryRouter>;
-}
-
 // Wrapper for components that need specific routes
 interface RouteWrapperProps extends WrapperProps {
   path: string;
