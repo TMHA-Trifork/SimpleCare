@@ -1,7 +1,7 @@
 using Microsoft.Extensions.Options;
 
 using SimpleCare.EmergencyWards.Domain;
-using SimpleCare.EmergencyWards.Domain.Interfaces;
+using SimpleCare.EmergencyWards.Interfaces;
 using SimpleCare.Infrastructure.EmergencyWards;
 using SimpleCare.Infrastructure.UnitOfWork;
 

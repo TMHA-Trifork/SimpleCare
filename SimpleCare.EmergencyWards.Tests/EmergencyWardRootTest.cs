@@ -1,6 +1,6 @@
 ﻿using NSubstitute;
-using SimpleCare.EmergencyWards.Domain.Interfaces;
 using SimpleCare.EmergencyWards.Domain;
+using SimpleCare.EmergencyWards.Interfaces;
 
 namespace SimpleCare.EmergencyWards.Tests;
 
@@ -27,14 +27,14 @@ public class EmergencyWardRootTest(EmergencyWardRootTestFixture fixture) : IClas
     {
         var patients = await fixture.EmergencyWard.GetPatients(Array.Empty<EmergencyPatientStatus>(), CancellationToken.None);
 
-        Assert.Equal(3, patients.Count);
+        Assert.Equal(3, patients.Count());
     }
 
     [Fact]
     public async Task GetAll_ShouldReturnAllPatients_IfStatusContainsAllValues()
     {
         var patients = await fixture.EmergencyWard.GetPatients([EmergencyPatientStatus.Registered, EmergencyPatientStatus.InTransfer, EmergencyPatientStatus.Discharged], CancellationToken.None);
-        Assert.Equal(3, patients.Count);
+        Assert.Equal(3, patients.Count());
     }
 
     [Theory]
