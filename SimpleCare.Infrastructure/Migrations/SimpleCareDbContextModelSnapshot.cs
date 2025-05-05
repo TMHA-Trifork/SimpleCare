@@ -161,6 +161,35 @@ namespace SimpleCare.Infrastructure.Migrations
 
                     b.ToTable("EW_Patients", (string)null);
                 });
+
+            modelBuilder.Entity("SimpleCare.Orderlies.Domain.OrderlyTask", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EndLocation")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset?>("EndTime")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("StartLocation")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset?>("StartTime")
+                        .HasColumnType("datetimeoffset");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("OL_Tasks", (string)null);
+                });
 #pragma warning restore 612, 618
         }
     }

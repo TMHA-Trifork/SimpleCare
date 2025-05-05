@@ -96,6 +96,22 @@ namespace SimpleCare.Infrastructure.Migrations
                     table.PrimaryKey("PK_EW_Patients", x => x.Id);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "OL_Tasks",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    StartLocation = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    EndLocation = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    StartTime = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
+                    EndTime = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OL_Tasks", x => x.Id);
+                });
+
             migrationBuilder.InsertData(
                 table: "BW_Ward",
                 columns: new[] { "Id", "Identifier", "Name" },
@@ -126,6 +142,9 @@ namespace SimpleCare.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "EW_Patients");
+
+            migrationBuilder.DropTable(
+                name: "OL_Tasks");
         }
     }
 }
