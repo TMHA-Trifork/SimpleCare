@@ -38,6 +38,9 @@ public record Patient(Guid Id, string PersonalIdentifier, string FamilyName, str
         var patient = (await patientRepository.Get(patientId, cancellationToken))
             ?? throw new InvalidOperationException($"Patient with ID {patientId} not found.");
 
+        if (patient.Status != EmergencyPatientStatus.Registered)
+            throw new InvalidOperationException($"Patient with ID {patientId} is not in a state to be transferred.");
+
         patient = patient with
         {
             Status = EmergencyPatientStatus.InTransfer,

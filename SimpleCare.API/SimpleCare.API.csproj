@@ -28,5 +28,4 @@
     <ProjectReference Include="..\SimpleCare.Infrastructure\SimpleCare.Infrastructure.csproj" />
     <ProjectReference Include="..\SimpleCare.Orderlies.Application\SimpleCare.Orderlies.Application.csproj" />
   </ItemGroup>
-
 </Project>

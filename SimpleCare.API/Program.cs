@@ -9,6 +9,7 @@ using SimpleCare.EmergencyWards.Boundary;
 using SimpleCare.EmergencyWards.Domain;
 using SimpleCare.EmergencyWards.Interfaces;
 using SimpleCare.Infrastructure;
+using SimpleCare.Infrastructure.UnitOfWork;
 using SimpleCare.Orderlies.Application;
 using SimpleCare.Orderlies.Boundary;
 using SimpleCare.Orderlies.Domain;
@@ -32,6 +33,7 @@ builder.Services.AddCors(options =>
             .AllowAnyMethod();
     });
 });
+
 
 builder.Services.Configure<SqlServerSettings>(builder.Configuration.GetSection("SqlServerSettings"));
 builder.Services.AddEntityFrameworkInfrastructure();
@@ -69,3 +71,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+public partial class Program { }
