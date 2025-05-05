@@ -37,21 +37,6 @@ export function RouteWrapper({
   );
 }
 
-// Custom render functions
-export function renderWithoutRouter(
-  ui: ReactElement,
-  options?: Omit<RenderOptions, "wrapper">
-) {
-  return render(ui, { wrapper: BasicWrapper, ...options });
-}
-
-export function renderWithRouter(
-  ui: ReactElement,
-  options?: Omit<RenderOptions, "wrapper">
-) {
-  return render(ui, { wrapper: RouterWrapper, ...options });
-}
-
 export function renderWithRoute(
   ui: ReactElement,
   path: string,
