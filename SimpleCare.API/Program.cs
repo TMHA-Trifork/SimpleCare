@@ -1,5 +1,6 @@
 using System.Text.Json.Serialization;
 
+using SimpleCare.API;
 using SimpleCare.BedWards.Application;
 using SimpleCare.BedWards.Boundary;
 using SimpleCare.BedWards.Domain;
@@ -15,6 +16,8 @@ using SimpleCare.Orderlies.Domain;
 using SimpleCare.Orderlies.Domain.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.AddOpenTelemetry();
 
 builder.Services.AddControllers()
     .AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));

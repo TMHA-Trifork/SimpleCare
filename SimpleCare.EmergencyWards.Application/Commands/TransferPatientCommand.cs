@@ -1,4 +1,6 @@
-﻿using MediatR;
+﻿using System.Diagnostics;
+
+using MediatR;
 
 using SimpleCare.BedWards.Boundary.Queries;
 using SimpleCare.EmergencyWards.Application.Mappers;
@@ -12,10 +14,16 @@ public record TransferPatientCommand(TransferRequest TransferRequest) : IRequest
 
 public class TransferPatientCommandHandler(IUnitOfWork unitOfWork, IEmergencyWard emergencyWardRoot, IMediator mediator) : IRequestHandler<TransferPatientCommand>
 {
+    private static readonly ActivitySource activitySource = new ActivitySource("SimpleCare");
+
     public async Task Handle(TransferPatientCommand request, CancellationToken cancellationToken)
     {
         try
         {
+            using var activity = activitySource.StartActivity("TransferPatientCommand");
+
+            activity?.SetTag("PatientId", request.TransferRequest.PatientId);
+
             var wardQuery = new GetBedWardQuery(request.TransferRequest.WardId);
             var bedWard = await mediator.Send(wardQuery);
 
