@@ -17,7 +17,7 @@ public class GetBedWardQueryHandler(IBedWard bedWardRoot) : IRequestHandler<GetB
     {
         using var activity = activitySource.StartActivity("GetBedWardQuery");
 
-        activity.SetTag("WardId", request.wardId);
+        activity?.SetTag("WardId", request.wardId);
 
         var bedWard = await bedWardRoot.GetWard(request.wardId, cancellationToken);
 
