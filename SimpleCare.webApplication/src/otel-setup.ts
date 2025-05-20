@@ -10,12 +10,6 @@ import { resourceFromAttributes } from "@opentelemetry/resources";
 import { W3CTraceContextPropagator } from "@opentelemetry/core";
 import { propagation } from "@opentelemetry/api";
 
-// In browser environments, environment variables need to be injected during build
-// or provided through a configuration mechanism. Here we're using defaults and
-// allowing them to be overridden by window.__OTEL_CONFIG__ if available.
-
-// Get service name from environment variables or use a default
-
 // Create a custom resource with the service name
 const resource = resourceFromAttributes({
   "service.name": "Frontend",
