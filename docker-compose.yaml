@@ -16,7 +16,7 @@ services:
       # Where our data will be persisted
 
   aspire-dashboard:
-    image: mcr.microsoft.com/dotnet/aspire-dashboard:9.0
+    image: mcr.microsoft.com/dotnet/aspire-dashboard:9.2
     container_name: aspire-dashboard
     ports:
       - "18888:18888"

@@ -1,6 +1,7 @@
 using System.Text.Json.Serialization;
 
 using SimpleCare.API;
+using SimpleCare.API.Middleware;
 using SimpleCare.BedWards.Application;
 using SimpleCare.BedWards.Boundary;
 using SimpleCare.BedWards.Domain;
@@ -51,7 +52,6 @@ builder.Services.AddScoped<IEmergencyWard, EmergencyWardRoot>();
 builder.Services.AddScoped<IBedWard, BedWardRoot>();
 builder.Services.AddScoped<IOrderly, OrderlyRoot>();
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -62,6 +62,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.UseCors(corsPolicy);
 
