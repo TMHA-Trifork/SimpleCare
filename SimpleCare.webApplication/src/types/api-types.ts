@@ -84,6 +84,22 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/emergency-wards/recipient-wards": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["GetRecipientWards"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/emergency-wards/patients/register": {
         parameters: {
             query?: never;
@@ -110,6 +126,54 @@ export interface paths {
         get?: never;
         put?: never;
         post: operations["TransferEmergencyPatient"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/orderly/tasks": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["GetOrderlyTasks"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/orderly/Tasks/start": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["StartTask"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/orderly/Tasks/end": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["EndTask"];
         delete?: never;
         options?: never;
         head?: never;
@@ -155,16 +219,34 @@ export interface components {
             givenNames?: string | null;
             reason?: string | null;
         };
+        OrderlyTaskListItem: {
+            /** Format: uuid */
+            id?: string;
+            startLocation?: string | null;
+            endLocation?: string | null;
+            description?: string | null;
+            /** Format: date-time */
+            startTime?: string | null;
+            /** Format: date-time */
+            endTime?: string | null;
+        };
         PatientAdmission: {
             /** Format: uuid */
             patientId?: string;
+        };
+        RecipientWardItem: {
+            /** Format: uuid */
+            id?: string;
+            identifier?: string | null;
+            name?: string | null;
         };
         TransferRequest: {
             /** Format: uuid */
             patientId?: string;
             familyName?: string | null;
             givenNames?: string | null;
-            wardIdentifier?: string | null;
+            /** Format: uuid */
+            wardId?: string;
             reason?: string | null;
         };
     };
@@ -286,6 +368,26 @@ export interface operations {
             };
         };
     };
+    GetRecipientWards: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["RecipientWardItem"][];
+                };
+            };
+        };
+    };
     RegisterEmergencyPatient: {
         parameters: {
             query?: never;
@@ -324,6 +426,66 @@ export interface operations {
                 "application/*+json": components["schemas"]["TransferRequest"];
             };
         };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    GetOrderlyTasks: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["OrderlyTaskListItem"][];
+                };
+            };
+        };
+    };
+    StartTask: {
+        parameters: {
+            query?: {
+                taskId?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    EndTask: {
+        parameters: {
+            query?: {
+                taskId?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
         responses: {
             /** @description OK */
             200: {

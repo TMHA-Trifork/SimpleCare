@@ -1,0 +1,203 @@
+.transfer-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.transfer-menu {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  width: 90%;
+  max-width: 500px;
+  padding: 20px;
+  position: relative;
+  animation: slideIn 0.3s ease-out;
+  box-sizing: border-box;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.transfer-menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+}
+
+.transfer-menu-header h3 {
+  margin: 0;
+  color: #333;
+  font-size: 1.5rem;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: #777;
+  line-height: 1;
+}
+
+.close-button:hover {
+  color: #333;
+}
+
+.patient-info {
+  background-color: #f9f9f9;
+  border-radius: 6px;
+  padding: 12px;
+  margin-bottom: 20px;
+}
+
+.patient-info p {
+  margin: 8px 0;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #555;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.form-group textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.button-group {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 25px;
+}
+
+.cancel-button,
+.transfer-button {
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.cancel-button {
+  background-color: #f2f2f2;
+  border: 1px solid #ddd;
+  color: #555;
+}
+
+.cancel-button:hover {
+  background-color: #e5e5e5;
+}
+
+.transfer-button {
+  background-color: #4a90e2;
+  border: none;
+  color: white;
+}
+
+.transfer-button:hover {
+  background-color: #3a80d2;
+}
+
+.transfer-button:disabled {
+  background-color: #a0c0e7;
+  cursor: not-allowed;
+}
+
+.error-message {
+  background-color: #ffe9e9;
+  color: #d32f2f;
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  font-size: 0.9rem;
+}
+
+/* Patient action menu */
+.patient-actions {
+  position: relative;
+}
+
+.action-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  overflow: hidden;
+  z-index: 10;
+  min-width: 150px;
+}
+
+.action-dropdown button {
+  display: block;
+  width: 100%;
+  padding: 10px 15px;
+  text-align: left;
+  background: none;
+  border: none;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.action-dropdown button:last-child {
+  border-bottom: none;
+}
+
+.action-dropdown button:hover {
+  background-color: #f5f5f5;
+}
+
+.action-button {
+  background: #e6e6e6;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.action-button:hover {
+  background: #d9d9d9;
+}

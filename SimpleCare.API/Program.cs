@@ -30,7 +30,8 @@ builder.Services.AddCors(options =>
     {
         builder
             .WithOrigins("http://localhost:3000")
-            .AllowAnyHeader()
+            .AllowAnyHeader()  // This allows the traceparent and tracestate headers
+            .WithExposedHeaders("traceparent", "tracestate")  // Explicitly expose the trace headers
             .AllowAnyMethod();
     });
 });
