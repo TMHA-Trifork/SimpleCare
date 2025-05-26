@@ -1,4 +1,9 @@
-﻿using MediatR;
+﻿using System.Diagnostics;
+using System.Diagnostics.Metrics;
+
+using MediatR;
+
+using Microsoft.Extensions.Logging;
 
 using SimpleCare.BedWards.Boundary.Queries;
 using SimpleCare.EmergencyWards.Application.Mappers;
@@ -12,10 +17,19 @@ public record TransferPatientCommand(TransferRequest TransferRequest) : IRequest
 
 public class TransferPatientCommandHandler(IUnitOfWork unitOfWork, IEmergencyWard emergencyWardRoot, IMediator mediator) : IRequestHandler<TransferPatientCommand>
 {
+    private static readonly Meter Meter = new Meter("SimpleCare");
+    private static readonly Counter<long> TransferPatientCounter = Meter.CreateCounter<long>("TransferPatientCounter", "count", "Counts the number of patients transferred");
+
+    private static readonly ActivitySource activitySource = new ActivitySource("SimpleCare");
+
     public async Task Handle(TransferPatientCommand request, CancellationToken cancellationToken)
     {
         try
         {
+            using var activity = activitySource.StartActivity("TransferPatientCommand");
+
+            activity?.SetTag("PatientId", request.TransferRequest.PatientId);
+
             var wardQuery = new GetBedWardQuery(request.TransferRequest.WardId);
             var bedWard = await mediator.Send(wardQuery);
 
@@ -28,10 +42,12 @@ public class TransferPatientCommandHandler(IUnitOfWork unitOfWork, IEmergencyWar
             await mediator.Publish(transferredEvent.MapWith(bedWard), cancellationToken);
 
             await unitOfWork.SaveChanges(cancellationToken);
+
+            TransferPatientCounter.Add(1);
         }
-        catch (Exception ex)
+        catch (InvalidOperationException ex)
         {
-            throw new Exception("An error occurred while transferring the patient", ex);
+            throw new InvalidOperationException($"An error occurred while transferring patient with id='{request.TransferRequest.PatientId}'", ex);
         }
     }
 }

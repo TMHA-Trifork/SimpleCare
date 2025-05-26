@@ -1,5 +1,7 @@
 using System.Text.Json.Serialization;
 
+using SimpleCare.API;
+using SimpleCare.API.Middleware;
 using SimpleCare.BedWards.Application;
 using SimpleCare.BedWards.Boundary;
 using SimpleCare.BedWards.Domain;
@@ -17,6 +19,8 @@ using SimpleCare.Orderlies.Domain.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.AddOpenTelemetry();
+
 builder.Services.AddControllers()
     .AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
 
@@ -28,7 +32,8 @@ builder.Services.AddCors(options =>
     {
         builder
             .WithOrigins("http://localhost:3000")
-            .AllowAnyHeader()
+            .AllowAnyHeader()  // This allows the traceparent and tracestate headers
+            .WithExposedHeaders("traceparent", "tracestate")  // Explicitly expose the trace headers
             .AllowAnyMethod();
     });
 });
@@ -50,7 +55,6 @@ builder.Services.AddScoped<IEmergencyWard, EmergencyWardRoot>();
 builder.Services.AddScoped<IBedWard, BedWardRoot>();
 builder.Services.AddScoped<IOrderly, OrderlyRoot>();
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -61,6 +65,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.UseCors(corsPolicy);
 

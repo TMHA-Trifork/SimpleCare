@@ -187,3 +187,66 @@
 .submit-button:hover {
   background-color: #218838;
 }
+
+/* Patient Actions */
+.patient-actions {
+  position: relative;
+}
+
+.action-button {
+  background: #e6e6e6;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.action-button:hover {
+  background: #d9d9d9;
+}
+
+.action-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  overflow: hidden;
+  z-index: 1000;
+  min-width: 150px;
+}
+
+/* Fix for parent clipping: allow overflow on table and container */
+.emergency-ward-container,
+.emergency-ward-table {
+  overflow: visible !important;
+}
+
+/* Optionally, ensure table rows don't hide overflow */
+.emergency-ward-row {
+  overflow: visible !important;
+}
+
+.action-dropdown button {
+  display: block;
+  width: 100%;
+  padding: 10px 15px;
+  text-align: left;
+  background: none;
+  border: none;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.action-dropdown button:last-child {
+  border-bottom: none;
+}
+
+.action-dropdown button:hover {
+  background-color: #f5f5f5;
+}
