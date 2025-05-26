@@ -1,0 +1,3 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`PatientDetails > should match snapshot 1`] = `"<h1 class="patient-details-title">Patient Details</h1><div class="patient-details-container"><p><strong>ID:</strong> 1</p><p><strong>Given Names:</strong> John</p><p><strong>Family Name:</strong> Doe</p><button class="back-button">Back</button></div>"`;

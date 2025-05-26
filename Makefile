@@ -7,6 +7,11 @@ run:
 	dotnet ef database update && \
 	cd ..
 
+create-initial-migration:
+	cd "SimpleCare.Infrastructure/" && \
+	dotnet ef migrations add InitialCreate && \
+	cd ..
+
 build:
 	dotnet build
 

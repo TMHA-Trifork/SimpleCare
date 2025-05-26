@@ -1,0 +1,28 @@
+trigger:
+  - main
+
+pool:
+  vmImage: "ubuntu-latest"
+
+variables:
+  frontendPath: "SimpleCare.webApplication"
+
+steps:
+  - task: UseNode@1
+    inputs:
+      version: "22.14.x"
+    displayName: "Install Node.js"
+
+  - script: |
+      npm install
+    workingDirectory: $(frontendPath)
+    displayName: "npm install"
+
+  - script: |
+      npm run build
+    workingDirectory: $(frontendPath)
+    displayName: "npm build"
+
+  # - script: npm test
+  #   workingDirectory: $(frontendPath)
+  #   displayName: "npm test"

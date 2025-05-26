@@ -1,6 +1,7 @@
-﻿using System.Collections.Immutable;
+﻿using SimpleCare.EmergencyWards.Domain;
+using System.Collections.Immutable;
 
-namespace SimpleCare.EmergencyWards.Domain.Interfaces;
+namespace SimpleCare.EmergencyWards.Interfaces;
 
 public interface IEmergencyPatientRepository
 {

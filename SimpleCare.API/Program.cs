@@ -7,9 +7,13 @@ using SimpleCare.BedWards.Domain.Interfaces;
 using SimpleCare.EmergencyWards.Application;
 using SimpleCare.EmergencyWards.Boundary;
 using SimpleCare.EmergencyWards.Domain;
-using SimpleCare.EmergencyWards.Domain.Interfaces;
+using SimpleCare.EmergencyWards.Interfaces;
 using SimpleCare.Infrastructure;
 using SimpleCare.Infrastructure.UnitOfWork;
+using SimpleCare.Orderlies.Application;
+using SimpleCare.Orderlies.Boundary;
+using SimpleCare.Orderlies.Domain;
+using SimpleCare.Orderlies.Domain.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -38,10 +42,13 @@ builder.Services.AddMediatR(cfg => cfg
     .RegisterServicesFromAssemblyContaining<BedWardsBoundary>()
     .RegisterServicesFromAssemblyContaining<EmergencyWard>()
     .RegisterServicesFromAssemblyContaining<EmergencyWardsBoundary>()
+    .RegisterServicesFromAssemblyContaining<OrderliesApplication>()
+    .RegisterServicesFromAssemblyContaining<OrderliesBoundary>()
 );
 
 builder.Services.AddScoped<IEmergencyWard, EmergencyWardRoot>();
 builder.Services.AddScoped<IBedWard, BedWardRoot>();
+builder.Services.AddScoped<IOrderly, OrderlyRoot>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

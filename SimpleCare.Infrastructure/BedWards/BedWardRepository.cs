@@ -1,6 +1,4 @@
-﻿
-using Microsoft.EntityFrameworkCore;
-
+﻿using Microsoft.EntityFrameworkCore;
 using SimpleCare.BedWards.Domain;
 using SimpleCare.BedWards.Domain.Interfaces;
 using SimpleCare.Infrastructure.UnitOfWork;

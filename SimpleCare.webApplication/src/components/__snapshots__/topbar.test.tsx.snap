@@ -1,0 +1,3 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`TopBar > should match snapshot 1`] = `"<div class="topbar-container"><div class="topbar-logo">SimpleCare</div><div class="topbar-links"><a class="topbar-link" href="/">Home</a><a class="topbar-link" href="/emergency-ward">Emergency Ward</a><a class="topbar-link" href="/bed-ward">Bed Ward</a></div></div>"`;

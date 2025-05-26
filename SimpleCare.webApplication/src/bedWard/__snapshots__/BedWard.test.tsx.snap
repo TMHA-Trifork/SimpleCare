@@ -1,0 +1,3 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`BedWard > should match snapshot 1`] = `"<div class="bed-ward-container"><h1 class="bed-ward-title">Bed Ward</h1><table class="bed-ward-table"><thead><tr><th>Given Names</th><th>Family Name</th><th>Status</th></tr></thead><tbody><tr class="bed-ward-row"><td>John</td><td>Doe</td><td>123456</td></tr></tbody></table></div>"`;

@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.4.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SimpleCare.EmergencyWards.Boundary\SimpleCare.EmergencyWards.Boundary.csproj" />
+    <ProjectReference Include="..\SimpleCare.Infrastructure.Interfaces\SimpleCare.Infrastructure.Interfaces.csproj" />
+    <ProjectReference Include="..\SimpleCare.Orderlies.Boundary\SimpleCare.Orderlies.Boundary.csproj" />
+    <ProjectReference Include="..\SimpleCare.Orderlies.Domain\SimpleCare.Orderlies.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

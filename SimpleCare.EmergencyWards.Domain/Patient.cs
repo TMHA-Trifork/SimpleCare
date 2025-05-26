@@ -1,5 +1,4 @@
-﻿using SimpleCare.EmergencyWards.Domain.Interfaces;
-
+﻿using SimpleCare.EmergencyWards.Interfaces;
 using System.Collections.Immutable;
 
 namespace SimpleCare.EmergencyWards.Domain;
