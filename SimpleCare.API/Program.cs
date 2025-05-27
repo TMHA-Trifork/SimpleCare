@@ -1,5 +1,8 @@
 using System.Text.Json.Serialization;
 
+using Microsoft.AspNetCore.Authentication.Negotiate;
+using Microsoft.AspNetCore.Authorization;
+
 using SimpleCare.API;
 using SimpleCare.API.Middleware;
 using SimpleCare.BedWards.Application;
@@ -11,6 +14,7 @@ using SimpleCare.EmergencyWards.Boundary;
 using SimpleCare.EmergencyWards.Domain;
 using SimpleCare.EmergencyWards.Interfaces;
 using SimpleCare.Infrastructure;
+using SimpleCare.Infrastructure.Authorization;
 using SimpleCare.Infrastructure.UnitOfWork;
 using SimpleCare.Orderlies.Application;
 using SimpleCare.Orderlies.Boundary;
@@ -20,6 +24,11 @@ using SimpleCare.Orderlies.Domain.Interfaces;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.AddOpenTelemetry();
+
+builder.Services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
+    .AddNegotiate();
+
+builder.Services.AddScoped<IAuthorizationHandler, SimpleCareAuthorizationHandler>();
 
 builder.Services.AddControllers()
     .AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));

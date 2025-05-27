@@ -1,3 +1,3 @@
 ﻿namespace SimpleCare.BedWards.Application.Values;
 
-public record PatientAdmission(Guid PatientId);
+public record PatientAdmission(Guid PatientId, Guid WardId);

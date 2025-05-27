@@ -9,9 +9,9 @@ public class BedWardRoot(
     IBedWardEncounterRepository bedWardEncounterRepository,
     IBedWardRepository bedWardRepository) : IBedWard
 {
-    public Task<IEnumerable<Patient>> GetPatients(CancellationToken cancellationToken)
+    public Task<IEnumerable<Patient>> GetPatients(Guid wardId, CancellationToken cancellationToken)
     {
-        return bedWardPatientRepository.GetAll(cancellationToken);
+        return bedWardPatientRepository.GetPatients(wardId, cancellationToken);
     }
 
     public async Task<Patient> GetPatient(Guid patientId, CancellationToken cancellationToken)
@@ -32,12 +32,12 @@ public class BedWardRoot(
     public async Task RegisterIncomingPatient(string personalIdentifier, string familyName, string givenNames, string wardIdentifier, string reason, CancellationToken cancellationToken)
     {
         var ward = await Ward.Get(wardIdentifier, bedWardRepository, cancellationToken);
-        var patient = await Patient.Register(personalIdentifier, familyName, givenNames, bedWardPatientRepository, cancellationToken);
+        var patient = await Patient.Register(personalIdentifier, familyName, givenNames, ward.Id, bedWardPatientRepository, cancellationToken);
 
         await IncomingPatient.Add(patient.Id, ward.Id, bedWardIncomingPatientRepository, cancellationToken);
     }
 
-    public async Task AdmitPatient(Guid patientId, CancellationToken cancellationToken)
+    public async Task AdmitPatient(Guid patientId, Guid wardId, CancellationToken cancellationToken)
     {
         var found = await Encounter.HasActiveForPatientId(patientId, bedWardEncounterRepository, cancellationToken);
         if (found)
@@ -46,6 +46,6 @@ public class BedWardRoot(
         var patient = await Patient.Get(patientId, bedWardPatientRepository, cancellationToken);
 
         await IncomingPatient.SetAsAdmitted(patient.Id, bedWardIncomingPatientRepository, cancellationToken);
-        await Encounter.AddNewAdmittance(patient.Id, bedWardEncounterRepository, cancellationToken);
+        await Encounter.AddNewAdmittance(patient.Id, wardId, bedWardEncounterRepository, cancellationToken);
     }
 }

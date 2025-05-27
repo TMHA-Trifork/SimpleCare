@@ -8,7 +8,7 @@ public enum EncounterStatus
     Discharged
 };
 
-public record Encounter(Guid Id, Guid PatientId, EncounterStatus Status)
+public record Encounter(Guid Id, Guid PatientId, EncounterStatus Status, Guid WardId)
 {
     internal static async Task<bool> HasActiveForPatientId(Guid patientId, IBedWardEncounterRepository bedWardEncounterRepository, CancellationToken cancellationToken)
     {
@@ -16,9 +16,9 @@ public record Encounter(Guid Id, Guid PatientId, EncounterStatus Status)
         return encounter is not null;
     }
 
-    internal static async Task AddNewAdmittance(Guid patientId, IBedWardEncounterRepository bedWardEncounterRepository, CancellationToken cancellationToken)
+    internal static async Task AddNewAdmittance(Guid patientId, Guid wardId, IBedWardEncounterRepository bedWardEncounterRepository, CancellationToken cancellationToken)
     {
-        var encounter = new Encounter(Guid.NewGuid(), patientId, EncounterStatus.Admitted);
+        var encounter = new Encounter(Guid.NewGuid(), patientId, EncounterStatus.Admitted, wardId);
         await bedWardEncounterRepository.AddEncounter(encounter, cancellationToken);
     }
 }

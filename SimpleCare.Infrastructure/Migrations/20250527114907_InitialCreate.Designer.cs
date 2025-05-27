@@ -12,7 +12,7 @@ using SimpleCare.Infrastructure.UnitOfWork;
 namespace SimpleCare.Infrastructure.Migrations
 {
     [DbContext(typeof(SimpleCareDbContext))]
-    [Migration("20250318120112_InitialCreate")]
+    [Migration("20250527114907_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -36,6 +36,9 @@ namespace SimpleCare.Infrastructure.Migrations
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
+
+                    b.Property<Guid>("WardId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -79,6 +82,9 @@ namespace SimpleCare.Infrastructure.Migrations
                     b.Property<string>("PersonalIdentifier")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("WardId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -157,7 +163,7 @@ namespace SimpleCare.Infrastructure.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<string>("wardIdentifier")
+                    b.Property<string>("WardIdentifier")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

@@ -1,4 +1,6 @@
 ﻿using MediatR;
+
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SimpleCare.EmergencyWards.Application.Commands;
 using SimpleCare.EmergencyWards.Application.Queries;
@@ -11,6 +13,7 @@ namespace SimpleCare.API.Controllers;
 
 [Route("api/emergency-wards")]
 [ApiController]
+[Authorize]
 public class EmergencyWardController(IMediator mediator, ILogger<EmergencyWardController> logger) : ControllerBase
 {
     [HttpGet("patients", Name = "GetEmergencyPatients")]

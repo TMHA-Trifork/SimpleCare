@@ -14,7 +14,9 @@ public class AdmitPatientCommandHandler(IUnitOfWork unitOfWork, IBedWard bedWard
     {
         try
         {
-            await bedWardRoot.AdmitPatient(request.Admission.PatientId, cancellationToken);
+            var admission = request.Admission;
+
+            await bedWardRoot.AdmitPatient(admission.PatientId, admission.WardId, cancellationToken);
 
             await unitOfWork.SaveChanges(cancellationToken);
         }

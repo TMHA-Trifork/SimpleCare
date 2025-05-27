@@ -11,6 +11,16 @@
           "BedWard"
         ],
         "operationId": "GetBedWardPatients",
+        "parameters": [
+          {
+            "name": "wardId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -465,6 +475,10 @@
         "type": "object",
         "properties": {
           "patientId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "wardId": {
             "type": "string",
             "format": "uuid"
           }

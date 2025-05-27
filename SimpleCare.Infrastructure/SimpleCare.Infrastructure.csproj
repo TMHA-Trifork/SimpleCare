@@ -22,4 +22,8 @@
     <ProjectReference Include="..\SimpleCare.Orderlies.Domain\SimpleCare.Orderlies.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>

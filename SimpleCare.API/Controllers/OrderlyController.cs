@@ -1,5 +1,6 @@
 ﻿using MediatR;
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 using SimpleCare.Orderlies.Application.Commands;
@@ -12,6 +13,7 @@ namespace SimpleCare.API.Controllers
 {
     [Route("api/orderly")]
     [ApiController]
+    [Authorize]
     public class OrderlyController(IMediator mediator, ILogger<OrderlyController> logger) : ControllerBase
     {
         [HttpGet("tasks", Name = "GetOrderlyTasks")]

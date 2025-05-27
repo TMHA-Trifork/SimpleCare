@@ -34,6 +34,9 @@ namespace SimpleCare.Infrastructure.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
+                    b.Property<Guid>("WardId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
 
                     b.ToTable("BW_Encounters", (string)null);
@@ -76,6 +79,9 @@ namespace SimpleCare.Infrastructure.Migrations
                     b.Property<string>("PersonalIdentifier")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("WardId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 

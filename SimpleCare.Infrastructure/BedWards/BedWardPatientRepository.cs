@@ -9,9 +9,9 @@ public class BedWardPatientRepository(SimpleCareDbContext dbContext) : IBedWardP
 {
     private readonly DbSet<Patient> patients = dbContext.Set<Patient>();
 
-    public async Task<IEnumerable<Patient>> GetAll(CancellationToken cancellationToken)
+    public async Task<IEnumerable<Patient>> GetPatients(Guid wardId, CancellationToken cancellationToken)
     {
-        return [.. await patients.ToListAsync(cancellationToken)];
+        return [.. await patients.Where(p => p.WardId == wardId).ToListAsync(cancellationToken)];
     }
 
     public async Task<Patient> Get(Guid patientId, CancellationToken cancellationToken)

@@ -136,23 +136,23 @@ public class EmergencyWardsTestFixure : IAsyncLifetime
 
     public async Task InitializeAsync()
     {
-        await msSqlContainer.StartAsync();
+        //await msSqlContainer.StartAsync();
 
-        dbContext = new SimpleCareDbContext(
-                Options.Create(
-                    new SqlServerSettings
-                    {
-                        ConnectionString = msSqlContainer.GetConnectionString(),
-                        Timeout = 30
-                    }));
-        await dbContext.Database.EnsureCreatedAsync();
+        //dbContext = new SimpleCareDbContext(
+        //        Options.Create(
+        //            new SqlServerSettings
+        //            {
+        //                ConnectionString = msSqlContainer.GetConnectionString(),
+        //                Timeout = 30
+        //            }));
+        //await dbContext.Database.EnsureCreatedAsync();
 
-        await dbContext.EWPatients.AddRangeAsync([
-            new Patient(PatientId1, "123456789", "Doe", "John", EmergencyPatientStatus.Registered),
-            new Patient(PatientId2, "987654321", "Smith", "Jane", EmergencyPatientStatus.InTransfer),
-            new Patient(PatientId3, "456789123", "Brown", "Alice", EmergencyPatientStatus.Discharged)]);
+        //await dbContext.EWPatients.AddRangeAsync([
+        //    new Patient(PatientId1, "123456789", "Doe", "John", EmergencyPatientStatus.Registered),
+        //    new Patient(PatientId2, "987654321", "Smith", "Jane", EmergencyPatientStatus.InTransfer),
+        //    new Patient(PatientId3, "456789123", "Brown", "Alice", EmergencyPatientStatus.Discharged)]);
 
-        dbContext.SaveChanges();
+        //dbContext.SaveChanges();
     }
 
     public async Task DisposeAsync()

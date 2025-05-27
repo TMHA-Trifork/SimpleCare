@@ -19,7 +19,8 @@ namespace SimpleCare.Infrastructure.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     PatientId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Status = table.Column<int>(type: "int", nullable: false)
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    WardId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -47,7 +48,8 @@ namespace SimpleCare.Infrastructure.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     PersonalIdentifier = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     FamilyName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    GivenNames = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    GivenNames = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    WardId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -89,7 +91,7 @@ namespace SimpleCare.Infrastructure.Migrations
                     FamilyName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     GivenNames = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
-                    wardIdentifier = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    WardIdentifier = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
