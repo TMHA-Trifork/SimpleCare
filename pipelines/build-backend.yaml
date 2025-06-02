@@ -22,6 +22,15 @@ steps:
       restoreSolution: "$(solution)"
       displayName: "NuGet restore"
 
+  - task: Bash@3
+    displayName: Check NuGet vulnerabilities
+    inputs:
+      targetType: 'inline'
+      script: |
+        dotnet list package --vulnerable --include-transitive 2>&1 | tee build.log
+        echo "Analyze dotnet list package command log output..."
+        grep -q -i "critical\|high\|moderate\|low" build.log; [ $? -eq 0 ] && echo "Security Vulnerabilities found on the log output" && exit 1
+
   - task: VSBuild@1
     inputs:
       solution: "$(solution)"
