@@ -22,6 +22,7 @@ steps:
       restoreSolution: "$(solution)"
       displayName: "NuGet restore"
 
+    # See also: https://www.mytechramblings.com/posts/check-if-your-dotnet-app-dependencies-has-a-security-vulnerability-on-you-cicd-pipelines/
   - task: Bash@3
     displayName: Check NuGet vulnerabilities
     inputs:
